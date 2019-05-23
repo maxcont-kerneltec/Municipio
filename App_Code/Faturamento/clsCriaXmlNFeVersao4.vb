@@ -1683,7 +1683,7 @@ Public Class clsCriaXmlNFeVersao4
         Case 202, 203
           ICMSSN202(writer, item.ICMS_orig, item.ICMS_CST, item.ICMS_modBCST, item.ICMS_pMVAST, item.ICMS_pRedBCST, item.ICMS_vBCST, item.ICMS_pICMSST, item.ICMS_vICMSST, icms_interest.vBCFCPST, icms_interest.pFCPST, icms_interest.vFCPST)
         Case 500
-          ICMSSN500(writer, item.ICMS_orig, item.ICMS_vBCSTRet, item.ICMS_vICMSSTRet, icms_interest.vBCFCPST, icms_interest.pFCPST, icms_interest.vFCPST, 0)
+          ICMSSN500(writer, item.ICMS_orig, item.ICMS_vBCSTRet, item.ICMS_vICMSSTRet, icms_interest.vBCFCPST, icms_interest.pFCPST, icms_interest.vFCPST, item.ICMS_pICMSST)
         Case 900
           ICMSSN900(writer, item.ICMS_orig, item.ICMS_modBC, item.ICMS_vBC, item.ICMS_pRedBC, item.ICMS_pICMS, item.ICMS_vICMS, item.ICMS_modBCST, item.ICMS_pMVAST, item.ICMS_pRedBCST, item.ICMS_vBCST, item.ICMS_pICMSST, item.ICMS_vICMSST, item.ICMS_pCredSN, item.ICMS_vCredICMSSN, icms_interest.vBCFCPST, icms_interest.pFCPST, icms_interest.vFCPST)
       End Select
