@@ -1661,7 +1661,7 @@ Public Class clsCriaXmlNFeVersao4
           Dim combustivel As New clsNfeItemCombustivel
 
           If Not combustivel.PegaCombustivelUmItemNfe(Me.id_nf, nItem) Then 'Não tem informações de combustível
-            ICMS60(writer, item.ICMS_orig, item.ICMS_vBCSTRet, item.ICMS_vICMSSTRet, 0)
+            ICMS60(writer, item.ICMS_orig, item.ICMS_vBCSTRet, item.ICMS_vICMSSTRet, item.ICMS_pICMSST)
           Else 'N10b - Grupo de Repasse do ICMS ST
             ICMSST(writer, item.ICMS_orig, item.ICMS_CST, item.ICMS_vBCSTRet, item.ICMS_vICMSSTRet, item.ICMS_vBCSTDest, item.ICMS_vICMSSTDest)
           End If
