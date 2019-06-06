@@ -763,6 +763,12 @@ Public Class clsCriaXmlNFeVersao4
       writer.WriteString(retirada.UF)
       writer.WriteEndElement()
 
+      If entrega.CEP <> "" Then
+        writer.WriteStartElement("CEP")
+        writer.WriteString(entrega.CEP)
+        writer.WriteEndElement()
+      End If
+
       writer.WriteEndElement() 'FIM retirada
     End If
   End Sub
@@ -815,6 +821,12 @@ Public Class clsCriaXmlNFeVersao4
       writer.WriteStartElement("UF")
       writer.WriteString(entrega.UF)
       writer.WriteEndElement()
+
+      If entrega.CEP <> "" Then
+        writer.WriteStartElement("CEP")
+        writer.WriteString(entrega.CEP)
+        writer.WriteEndElement()
+      End If
 
       writer.WriteEndElement() 'FIM entrega
     End If

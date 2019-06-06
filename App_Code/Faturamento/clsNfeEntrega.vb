@@ -5,7 +5,7 @@ Imports System
 Public Class clsNfeEntrega
 
   Private _id_nf, _tipo_reg, _cMun, _id_end_entrega As Integer
-  Private _tipo_pessoa, _cnpj, _xLgr, _nro, _xCpl, _xBairro, _xMun, _UF As String
+  Private _tipo_pessoa, _cnpj, _xLgr, _nro, _xCpl, _xBairro, _xMun, _UF, _CEP As String
 
   Public Sub New()
 
@@ -119,13 +119,22 @@ Public Class clsNfeEntrega
     End Set
   End Property
 
+  Property CEP() As String
+    Get
+      Return _CEP
+    End Get
+    Set(value As String)
+      _CEP = value
+    End Set
+  End Property
+
   Public Sub ListaEndRetUmaNfe(ByVal id_nf As Integer)
     Dim conexao As New clsConexao
     Dim str_builder As New StringBuilder
     Dim dr As SqlDataReader
 
     str_builder.Append("SELECT tipo_pessoa, cnpj, dbo.fLC(xLgr), nro, dbo.fLC(xCpl), dbo.fLC(xBairro), cMun, dbo.fLC(xMun), UF, ")
-    str_builder.Append("dbo.fCNPJ_Tipo_Le(cnpj, tipo_pessoa) as mRET_cnpj_fmt ")
+    str_builder.Append("dbo.fCNPJ_Tipo_Le(cnpj, tipo_pessoa) as mRET_cnpj_fmt, CEP ")
     str_builder.Append("FROM NFE_entrega ")
     str_builder.Append("WHERE (id_nf = " & id_nf & ") and (tipo_reg = 1)")
 
@@ -143,6 +152,7 @@ Public Class clsNfeEntrega
         Me.xMun = dr(7)
         Me.UF = dr(8)
         Me.cnpj = dr(9)
+        Me.CEP = dr(10)
       Loop
 
       dr.Close()
