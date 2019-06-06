@@ -168,7 +168,7 @@ Public Class clsNfeEntrega
     Dim dr As SqlDataReader
 
     str_builder.Append("SELECT tipo_pessoa, cnpj, dbo.fLC(xLgr), nro, dbo.fLC(xCpl), dbo.fLC(xBairro), cMun, dbo.fLC(xMun), UF, ")
-    str_builder.Append("dbo.fCNPJ_Tipo_Le(cnpj, tipo_pessoa) as mRET_cnpj_fmt ")
+    str_builder.Append("dbo.fCNPJ_Tipo_Le(cnpj, tipo_pessoa) as mRET_cnpj_fmt, CEP ")
     str_builder.Append("FROM NFE_entrega ")
     str_builder.Append("WHERE (id_nf = " & id_nf & ") and (tipo_reg = 0)")
 
@@ -186,6 +186,7 @@ Public Class clsNfeEntrega
         Me.xMun = dr(7)
         Me.UF = dr(8)
         Me.cnpj = dr(9)
+        Me.CEP = dr(10)
       Loop
 
       dr.Close()

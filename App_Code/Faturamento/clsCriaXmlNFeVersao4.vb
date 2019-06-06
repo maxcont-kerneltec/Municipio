@@ -763,9 +763,9 @@ Public Class clsCriaXmlNFeVersao4
       writer.WriteString(retirada.UF)
       writer.WriteEndElement()
 
-      If entrega.CEP <> "" Then
+      If retirada.CEP <> "" Then
         writer.WriteStartElement("CEP")
-        writer.WriteString(entrega.CEP)
+        writer.WriteString(retirada.CEP)
         writer.WriteEndElement()
       End If
 
