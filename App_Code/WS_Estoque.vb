@@ -145,6 +145,8 @@ Public Class WS_Estoque
             txt_cabecalho = txt_cabecalho & "INATIVO|" 'INATIVO
           ElseIf reader.GetString(37) = "S" Then 'Item serviço
             txt_cabecalho = txt_cabecalho & "SERVICO|" 'SERVIÇO
+          ElseIf reader.GetString(37) = "E" Then 'Item Entrada
+            txt_cabecalho = txt_cabecalho & "ENTRADA|" 'Entrada
           Else
             If reader.GetString(35) <> "" Then 'Tem fonte tributária preenchida
               txt_cabecalho = txt_cabecalho & reader.GetString(35) & "|" 'aliq_vTotTrib_fonte_tribut
