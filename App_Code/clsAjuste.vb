@@ -131,6 +131,20 @@ Public Class clsAjuste
 
   End Function
 
+
+  Public Function Formata_Num(ByVal data As String, ByVal Casa As Integer) As String
+    If data = "" Then
+      Return data
+    End If
+
+    If Len(data) <> Casa Then
+      data = data.PadLeft(Casa, "0")
+    End If
+
+    Return data
+
+  End Function
+
   Public Function CriaPastaXmlNFe(ByVal caminho_salva_xml As String, ByVal mes As String, ByVal ano As Integer) As String
     'Dim caminho_salva_xml As String = "C:\MaxcontNfe\XML_transmitidas\"
     Dim aaaamm As String = ano & Right("00" & mes, 2)

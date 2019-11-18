@@ -846,11 +846,11 @@ Public Class clsCriaXmlNFeVersao4
 
         If drv("tipo_pessoa") = "J" Then
           writer.WriteStartElement("CNPJ")
-          writer.WriteString(ajuste.FormataCNPJ(drv("cnpj"), FormataCnpj.semCaracter))
+          writer.WriteString(ajuste.Formata_Num(drv("cnpj"), 14))
           writer.WriteEndElement()
         Else
           writer.WriteStartElement("CPF")
-          writer.WriteString(ajuste.FormataCPF(drv("cnpj"), FormataCpf.semCaracter))
+          writer.WriteString(ajuste.Formata_Num(drv("cnpj"), 11))
           writer.WriteEndElement()
         End If
 
