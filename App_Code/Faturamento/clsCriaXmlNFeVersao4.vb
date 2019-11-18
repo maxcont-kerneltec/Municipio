@@ -190,7 +190,7 @@ Public Class clsCriaXmlNFeVersao4
     IdentificacaoDestinatario(writer) 'E. Identificação do Destinatário da Nota Fiscal eletrônica
     IdentificacaoLocalRetirada(writer) 'F. Identificação do Local de Retirada
     IdentificacaoLocalEntrega(writer) 'G. Identificação do Local de Entrega
-    'Autorizacao(writer) GA. Autorização para obter XML
+    Autorizacao(writer) 'GA. Autorização para obter XML
     DetalhamentoProdutos(writer) 'H. Detalhamento de Produtos e Serviços da NF-e
     TotalNfe(writer) 'W. Total da NF-e
     Transportadora(writer) 'X. Informações do Transporte da NF-e
@@ -799,12 +799,12 @@ Public Class clsCriaXmlNFeVersao4
       writer.WriteStartElement("nro")
       writer.WriteString(RTrim(entrega.nro))
       writer.WriteEndElement()
-	  
-	  If entrega.xCpl <> "" Then
-	    writer.WriteStartElement("xCpl")
+
+      If entrega.xCpl <> "" Then
+        writer.WriteStartElement("xCpl")
         writer.WriteString(entrega.xCpl)
         writer.WriteEndElement()
-	  End If      
+      End If
 
       writer.WriteStartElement("xBairro")
       writer.WriteString(entrega.xBairro)
@@ -830,6 +830,35 @@ Public Class clsCriaXmlNFeVersao4
 
       writer.WriteEndElement() 'FIM entrega
     End If
+  End Sub
+
+  Private Sub Autorizacao(ByVal writer As XmlTextWriter)
+    Dim aut_XML As New clsNFeAutXML
+    Dim ajuste As New clsAjuste
+    Dim dv As New DataView
+    dv = New DataView
+
+    dv = aut_XML.Lista_autXML(Me.id_nf)
+
+    If dv.Count > 0 Then
+      For Each drv As DataRowView In dv
+        writer.WriteStartElement("autXML") 'INICIO autXML
+
+        If drv("tipo_pessoa") = "J" Then
+          writer.WriteStartElement("CNPJ")
+          writer.WriteString(ajuste.FormataCNPJ(drv("cnpj"), FormataCnpj.semCaracter))
+          writer.WriteEndElement()
+        Else
+          writer.WriteStartElement("CPF")
+          writer.WriteString(ajuste.FormataCPF(drv("cnpj"), FormataCpf.semCaracter))
+          writer.WriteEndElement()
+        End If
+
+        writer.WriteEndElement() 'FIM autXML
+
+      Next
+    End If
+
   End Sub
 
   ''' <summary>
