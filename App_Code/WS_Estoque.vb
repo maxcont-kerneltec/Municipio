@@ -769,7 +769,7 @@ Public Class WS_Estoque
     Dim tipo_doc As String = "1"
 
     Dim strCnn As String = GetConnectionString("maxcont_cloud")
-    Dim strSQL As String = "EXEC spWS_PDV_CFe_Importa_Mov '" & id_empresa & "','" & cnpj & "','" & CFe_txt & "','" & tipo_doc & "'"
+    Dim strSQL As String = "EXEC spWS_PDV_CFe_Importa_Mov '" & id_empresa & "','" & cnpj & "','" & CFe_txt.Replace("'", "''") & "','" & tipo_doc & "'"
 
     Dim cnn As New SqlConnection(strCnn)
     cnn.Open()
@@ -862,7 +862,7 @@ Public Class WS_Estoque
     Dim tipo_doc As String = "1"
 
     Dim strCnn As String = GetConnectionString("maxcont_cloud")
-    Dim strSQL As String = "EXEC spWS_PDV_CFe_Importa_Mov '" & id_empresa & "','" & cnpj & "','" & CFe_txt & "','" & tipo_doc & "','" & txt_XML & "','" & xml_url & "'"
+    Dim strSQL As String = "EXEC spWS_PDV_CFe_Importa_Mov '" & id_empresa & "','" & cnpj & "','" & CFe_txt.Replace("'", "''") & "','" & tipo_doc & "','" & txt_XML.Replace("'", "''") & "','" & xml_url & "'"
 
     'Return strSQL
 
@@ -958,7 +958,7 @@ Public Class WS_Estoque
     Dim tipo_doc As String = "1"
 
     Dim strCnn As String = GetConnectionString("maxcont_cloud")
-    Dim strSQL As String = "EXEC spWS_PDV_CFe_Importa_Mov '" & id_empresa & "','" & cnpj & "','" & CFe_txt & "','" & tipo_doc & "','" & txt_XML & "','" & xml_url & "'"
+    Dim strSQL As String = "EXEC spWS_PDV_CFe_Importa_Mov '" & id_empresa & "','" & cnpj & "','" & CFe_txt.Replace("'", "''") & "','" & tipo_doc & "','" & txt_XML.Replace("'", "''") & "','" & xml_url & "'"
 
     'Return strSQL
 
@@ -1021,7 +1021,7 @@ Public Class WS_Estoque
     Dim tipo_doc As String = "2"
 
     Dim strCnn As String = GetConnectionString("maxcont_cloud")
-    Dim strSQL As String = "EXEC spWS_PDV_CFe_Importa_Mov '" & id_empresa & "','" & cnpj & "','" & CFe_txt & "','" & tipo_doc & "'"
+    Dim strSQL As String = "EXEC spWS_PDV_CFe_Importa_Mov '" & id_empresa & "','" & cnpj & "','" & CFe_txt.Replace("'", "''") & "','" & tipo_doc & "'"
 
     Dim cnn As New SqlConnection(strCnn)
     cnn.Open()
