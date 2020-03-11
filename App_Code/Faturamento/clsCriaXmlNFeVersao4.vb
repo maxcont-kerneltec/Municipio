@@ -2814,7 +2814,7 @@ Public Class clsCriaXmlNFeVersao4
     writer.WriteString("900")
     writer.WriteEndElement()
 
-    If ICMS_vICMS > 0 Then
+    If ICMS_vICMS > 0 Or ICMS_vBC > 0 Then
       writer.WriteStartElement("modBC")
       writer.WriteString(ICMS_modBC)
       writer.WriteEndElement()
@@ -2836,7 +2836,7 @@ Public Class clsCriaXmlNFeVersao4
       writer.WriteEndElement()
     End If
 
-    If ICMS_vICMSST > 0 Then
+    If ICMS_vICMSST > 0 Or ICMS_vBCST > 0 Then
       writer.WriteStartElement("modBCST")
       writer.WriteString(ICMS_modBCST)
       writer.WriteEndElement()
