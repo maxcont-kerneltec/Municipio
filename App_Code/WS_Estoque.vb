@@ -1043,6 +1043,35 @@ Public Class WS_Estoque
   End Function
 
 
+  <WebMethod()> _
+  Public Function Pega_ORC_Mov(ByVal id_empresa As String, cnpj As String, CFe_txt As String) As String
+
+    Dim result As String = ""
+    Dim cod_result As String = ""
+
+    Dim tipo_doc As String = "3"
+
+    Dim strCnn As String = GetConnectionString("maxcont_cloud")
+    Dim strSQL As String = "EXEC spWS_PDV_CFe_Importa_Mov '" & id_empresa & "','" & cnpj & "','" & CFe_txt.Replace("'", "''") & "','" & tipo_doc & "'"
+
+    Dim cnn As New SqlConnection(strCnn)
+    cnn.Open()
+    Dim cmd As New SqlClient.SqlCommand(strSQL, cnn)
+    'cmd.Parameters.Add(New SqlParameter("@ProductID", productID))
+
+    Dim resultado As String = ""
+
+    Dim dr As SqlDataReader = cmd.ExecuteReader(CommandBehavior.CloseConnection)
+    If dr.HasRows Then
+      dr.Read()
+      result = dr("result")
+      cod_result = dr("cod_result")
+    End If
+    cnn.Close()
+
+    Return result
+
+  End Function
 
   Private Shared Function GetConnectionString(ByVal name As String) As String
 
