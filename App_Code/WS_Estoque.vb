@@ -425,6 +425,56 @@ Public Class WS_Estoque
 
   'PEGA CADASTRO DA EMPRESA
   <WebMethod()> _
+  Public Function Pega_Cadastro_Grupos(ByVal id_empresa As String, cnpj As String) As String
+
+    Dim result As String = ""
+    Dim cod_result As String = ""
+    Dim strCnn As String = GetConnectionString("maxcont_cloud")
+    Dim strSQL As String = "EXEC spWS_Estoque_Pega_Grupos_Cad '" & id_empresa & "','" & cnpj & "','VALIDAR'"
+
+    Dim cnn As New SqlConnection(strCnn)
+    cnn.Open()
+    Dim cmd As New SqlClient.SqlCommand(strSQL, cnn)
+    'cmd.Parameters.Add(New SqlParameter("@ProductID", productID))
+
+    Dim resultado As String = ""
+
+    Dim dr As SqlDataReader = cmd.ExecuteReader(CommandBehavior.CloseConnection)
+    If dr.HasRows Then
+      dr.Read()
+      result = dr("result")
+      cod_result = dr("cod_result")
+    End If
+    cnn.Close()
+
+
+    Dim txt_cabecalho As String = ""
+
+    If cod_result = "1" Then
+
+      Dim strCnn2 As String = GetConnectionString("maxcont_cloud")
+      Dim cnn2 As New SqlConnection(strCnn2)
+
+      Dim command As SqlCommand = New SqlCommand("EXEC spWS_Estoque_Pega_Grupos_Cad '" & id_empresa & "','" & cnpj & "','CONSULTAR'", cnn2)
+
+      cnn2.Open()
+      Dim reader As SqlDataReader = command.ExecuteReader()
+
+
+      If reader.HasRows Then
+        Do While reader.Read()
+
+          txt_cabecalho = txt_cabecalho & reader.GetString(0) & "|" 'TXT concatenado
+        Loop
+      End If
+      cnn.Close()
+    End If
+    Return txt_cabecalho
+
+  End Function
+
+  'PEGA CADASTRO DA EMPRESA
+  <WebMethod()> _
   Public Function Pega_Cadastro_Empresa(ByVal id_empresa As String, cnpj As String) As String
 
     Dim result As String = ""
