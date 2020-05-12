@@ -196,7 +196,9 @@ Public Class clsCriaXmlNFeVersao4
     Transportadora(writer) 'X. Informações do Transporte da NF-e
     Cobranca(writer) 'Y. Dados da Cobrança
     InformacoesAdicionais(writer) 'Z. Informações Adicionais da NF-e
-
+    If id_empresa = 830 Or id_empresa = 328 Or id_empresa = 1734 Then
+      ResponsavelTecnico(writer) 'Identificação do responsável técnico
+    End If
 
     writer.WriteEndElement() 'FIM infNFe
     writer.WriteEndElement() 'FIM NFe
@@ -858,6 +860,34 @@ Public Class clsCriaXmlNFeVersao4
 
       Next
     End If
+
+  End Sub
+
+  Private Sub ResponsavelTecnico(ByVal writer As XmlTextWriter)
+    Dim aut_XML As New clsNFeAutXML
+    Dim ajuste As New clsAjuste
+    Dim dv As New DataView
+    dv = New DataView
+
+    writer.WriteStartElement("infRespTec") 'INICIO autXML
+
+    writer.WriteStartElement("CNPJ")
+    writer.WriteString("07926026000104")
+    writer.WriteEndElement()
+
+    writer.WriteStartElement("xContato")
+    writer.WriteString("Gerson")
+    writer.WriteEndElement()
+
+    writer.WriteStartElement("email")
+    writer.WriteString("maxcont@maxcont.com.br")
+    writer.WriteEndElement()
+
+    writer.WriteStartElement("fone")
+    writer.WriteString("1141919835")
+    writer.WriteEndElement()
+
+    writer.WriteEndElement() 'FIM autXML
 
   End Sub
 
