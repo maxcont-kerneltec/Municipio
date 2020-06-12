@@ -234,8 +234,8 @@ Public Class clsNfeDest
     Dim dr As SqlDataReader
 
     str_builder.Append("SELECT cnpj, dbo.fLC(xNome) as xNome, dbo.fLC(xLgr) as xLgr, dbo.fLC(nro) as nro, dbo.fLC(xCpl), dbo.fLC(xBairro), cMun, dbo.fLC(xMun) as xMun,  ")
-    str_builder.Append("UF, CEP, cPais, dbo.fLC(xPais) as xPais, fone, ISNULL((IE), ''), ISNULL((ISUF), ''), ISNULL((email), ''), tipo_pessoa, ")
-	str_builder.Append("CASE WHEN tipo_pessoa = 'J' THEN dbo.fCNPJ_Le(RIGHT('00000000000000' + CAST(cnpj as varchar(14)), 14)) ELSE dbo.fCNPJ_Le(cnpj) END AS cnpjFormat, ")
+    str_builder.Append("UF, CEP, cPais, dbo.fLC(xPais) as xPais, isnull(fone, '') as fone, ISNULL((IE), ''), ISNULL((ISUF), ''), ISNULL((email), ''), tipo_pessoa, ")
+    str_builder.Append("CASE WHEN tipo_pessoa = 'J' THEN dbo.fCNPJ_Le(RIGHT('00000000000000' + CAST(cnpj as varchar(14)), 14)) ELSE dbo.fCNPJ_Le(cnpj) END AS cnpjFormat, ")
     str_builder.Append("indIEDest, ISNULL((IM), ''), ISNULL((id_cliente),0) AS id_cliente ")
     str_builder.Append("FROM NFE_dest ")
     str_builder.Append("WHERE (id_dest = " & id_dest & ") ")
