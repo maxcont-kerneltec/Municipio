@@ -196,7 +196,7 @@ Public Class clsCriaXmlNFeVersao4
     Transportadora(writer) 'X. Informações do Transporte da NF-e
     Cobranca(writer) 'Y. Dados da Cobrança
     InformacoesAdicionais(writer) 'Z. Informações Adicionais da NF-e
-    If id_empresa = 830 Or id_empresa = 328 Or id_empresa = 1734 Then
+    If id_empresa = 830 Or id_empresa = 328 Or id_empresa = 1734 Or id_empresa = 779 Then
       ResponsavelTecnico(writer) 'Identificação do responsável técnico
     End If
 

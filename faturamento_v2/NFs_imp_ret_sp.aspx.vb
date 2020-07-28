@@ -246,6 +246,31 @@ Partial Class Municipio_faturamento_v2_NFs_imp_ret_sp
     dt.Columns.Add("UF do Tomador", Type.GetType("System.String"))
     dt.Columns.Add("CEP do Tomador", Type.GetType("System.String"))
     dt.Columns.Add("Email do Tomador", Type.GetType("System.String"))
+    dt.Columns.Add("Nº NFS-e Substituta", Type.GetType("System.String"))
+    dt.Columns.Add("ISS pago", Type.GetType("System.String"))
+    dt.Columns.Add("ISS a pagar", Type.GetType("System.String"))
+    dt.Columns.Add("Indicador de CPF/CNPJ do Intermediário", Type.GetType("System.String"))
+    dt.Columns.Add("CPF/CNPJ do Intermediário", Type.GetType("System.String"))
+    dt.Columns.Add("Inscrição Municipal do Intermediário", Type.GetType("System.String"))
+    dt.Columns.Add("Razão Social do Intermediário", Type.GetType("System.String"))
+    dt.Columns.Add("Repasse do Plano de Saúde", Type.GetType("System.String"))
+    dt.Columns.Add("PIS/PASEP", Type.GetType("System.String"))
+    dt.Columns.Add("COFINS", Type.GetType("System.String"))
+    dt.Columns.Add("INSS", Type.GetType("System.String"))
+    dt.Columns.Add("IR", Type.GetType("System.String"))
+    dt.Columns.Add("CSLL", Type.GetType("System.String"))
+    dt.Columns.Add("Carga tributária: Valor", Type.GetType("System.String"))
+    dt.Columns.Add("Carga tributária: Porcentagem", Type.GetType("System.String"))
+    dt.Columns.Add("Carga tributária: Fonte", Type.GetType("System.String"))
+    dt.Columns.Add("CEI", Type.GetType("System.String"))
+    dt.Columns.Add("Matrícula da Obra", Type.GetType("System.String"))
+    dt.Columns.Add("Município Prestação - cód. IBGE", Type.GetType("System.String"))
+    dt.Columns.Add("Situação do Aceite", Type.GetType("System.String"))
+    dt.Columns.Add("Encapsulamento", Type.GetType("System.String"))
+    dt.Columns.Add("Valor Total Recebido", Type.GetType("System.String"))
+    dt.Columns.Add("Tipo de Consolidação", Type.GetType("System.String"))
+    dt.Columns.Add("Nº NFS-e Consolidada", Type.GetType("System.String"))
+    dt.Columns.Add("Campo Reservado", Type.GetType("System.String"))
     dt.Columns.Add("Discriminação dos Serviços", Type.GetType("System.String"))
 
 
@@ -256,8 +281,8 @@ Partial Class Municipio_faturamento_v2_NFs_imp_ret_sp
       Do While obj_reader.Peek() <> -1
         linha_texto = obj_reader.ReadLine()
         arrrayDeLinhas = Split(linha_texto.Trim(), ";")
-
-        If Split(linha_texto.Trim(), ";").Length <= 48 Then 'Número de colunas que deve ter o arquivo .csv
+        'Response.Write(Split(linha_texto.Trim(), ";").Length)
+        If Split(linha_texto.Trim(), ";").Length <= 73 Then 'Número de colunas que deve ter o arquivo .csv
           Response.Write(Split(linha_texto.Trim(), ";").Length)
 
           linha = dt.NewRow()
@@ -267,6 +292,11 @@ Partial Class Municipio_faturamento_v2_NFs_imp_ret_sp
             strSQL = "EXEC sp9_Importa_ArqNFSe_SP_Temp '" & id_empresa & "'"
             strSQL = strSQL & ",'" & linha(0) & "','" & linha(1) & "','" & AMD(Left(linha(2), 10)) & "','" & linha(3) & "'"
             strSQL = strSQL & ",'" & linha(6) & "','" & linha(8) & "','" & linha(23) & "','" & linha(28) & "'"
+
+            'Response.Write(strSQL)
+
+            'Response.End()
+
             'strSQL = "EXEC sp9_Importa_ArqNFSe_SP '" & id_empresa & "'"
             'strSQL = strSQL & ",'" & linha(0) & "','" & linha(1) & "','" & AMD(Left(linha(2), 10)) & "','" & linha(3) & "','" & linha(4) & "','" & linha(5) & "'"
             'strSQL = strSQL & ",'" & linha(6) & "','" & AMD(Left(linha(7), 10)) & "','" & linha(8) & "','" & linha(9) & "','" & linha(10) & "'"
