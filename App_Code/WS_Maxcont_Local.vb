@@ -51,6 +51,10 @@ Public Class WS_Maxcont_Local
     Dim ajuste As New clsAjuste
     'Dim caminho_pasta As String = ajuste.GetFilePathFaturamentoSaveNFe(id_empresa)
     Dim caminho_salva As String = ajuste.GetFilePathFaturamentoSaveNFe(id_empresa)
+
+    Dim caminho_salva_temp As String = ajuste.GetFilePathTempEmpresa(id_empresa)
+
+
     Dim aaaamm As String
 
     aaaamm = Year(Date.Now()) & Right("00" & Month(Date.Now()), 2)
@@ -62,6 +66,7 @@ Public Class WS_Maxcont_Local
 
     'Try
     cria_xml.CriaXmlNFe(id_nf, id_empresa, nNF, caminho_salva)
+    cria_xml.CriaXmlNFe(id_nf, id_empresa, nNF, caminho_salva_temp)
 
     doc.Load(cria_xml.caminho_pasta) 'O caminho completo de onde se encontra o XML...     
     'Catch ex As System.Exception

@@ -199,13 +199,28 @@ Public Class clsAjuste
   Public Function GetFilePathSaveNFe(ByVal id_empresa As Integer) As String
     Return HttpContext.Current.Server.MapPath("/Faturamento/Docs/" & Convert.ToString(id_empresa) & "/")
   End Function
-  
+
   Public Function GetFilePathFaturamentoSaveNFe(ByVal id_empresa As Integer) As String
     Return HttpContext.Current.Server.MapPath("../../max_2/Faturamento/Docs/" & Convert.ToString(id_empresa) & "/")
   End Function
 
   Public Function GetFilePathTemp() As String
     Return HttpContext.Current.Server.MapPath("/temp/")
+  End Function
+
+
+  Public Function GetFilePathTempEmpresa(ByVal id_empresa As Integer) As String
+    Dim Caminho_Temp As String = HttpContext.Current.Server.MapPath("../../max_2/Temp/" & Convert.ToString(id_empresa) & "/")
+
+    If Not Directory.Exists(Caminho_Temp) Then
+      Try
+        Directory.CreateDirectory(Caminho_Temp)
+      Catch ex As Exception
+        Me.xMotivo = "ERRO AO CRIAR PASTA DE XMLS:" & ex.Message() & "-------" & ex.StackTrace()
+      End Try
+    End If
+
+    Return Caminho_Temp
   End Function
 
   Public Function PegaTimeZone() As String
