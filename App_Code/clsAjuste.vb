@@ -210,7 +210,8 @@ Public Class clsAjuste
 
 
   Public Function GetFilePathTempEmpresa(ByVal id_empresa As Integer) As String
-    Dim Caminho_Temp As String = HttpContext.Current.Server.MapPath("../../max_2/Temp/" & Convert.ToString(id_empresa) & "/")
+    'Dim Caminho_Temp As String = HttpContext.Current.Server.MapPath("../../max_2/Temp/" & Convert.ToString(id_empresa) & "/")
+    Dim Caminho_Temp As String = HttpContext.Current.Server.MapPath("../../max_2/Faturamento/docs/Temp/")
 
     If Not Directory.Exists(Caminho_Temp) Then
       Try
@@ -219,6 +220,17 @@ Public Class clsAjuste
         Me.xMotivo = "ERRO AO CRIAR PASTA DE XMLS:" & ex.Message() & "-------" & ex.StackTrace()
       End Try
     End If
+
+    Caminho_Temp = HttpContext.Current.Server.MapPath("../../max_2/Faturamento/docs/Temp/" & Convert.ToString(id_empresa) & "/")
+
+    If Not Directory.Exists(Caminho_Temp) Then
+      Try
+        Directory.CreateDirectory(Caminho_Temp)
+      Catch ex As Exception
+        Me.xMotivo = "ERRO AO CRIAR PASTA DE XMLS:" & ex.Message() & "-------" & ex.StackTrace()
+      End Try
+    End If
+
 
     Return Caminho_Temp
   End Function

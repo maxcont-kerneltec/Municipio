@@ -65,7 +65,7 @@ Public Class WS_Maxcont_Local
     End If
 
     'Try
-    cria_xml.CriaXmlNFe(id_nf, id_empresa, nNF, caminho_salva)
+    'cria_xml.CriaXmlNFe(id_nf, id_empresa, nNF, caminho_salva)
     cria_xml.CriaXmlNFe(id_nf, id_empresa, nNF, caminho_salva_temp)
 
     doc.Load(cria_xml.caminho_pasta) 'O caminho completo de onde se encontra o XML...     
