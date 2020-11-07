@@ -7,6 +7,7 @@ Public Class clsNfeEntrega
   Private _id_nf, _tipo_reg, _cMun, _id_end_entrega As Integer
   Private _tipo_pessoa, _cnpj, _xLgr, _nro, _xCpl, _xBairro, _xMun, _UF, _CEP As String
 
+  Private conexao1 As New SqlConnection
   Public Sub New()
 
   End Sub
@@ -139,7 +140,9 @@ Public Class clsNfeEntrega
     str_builder.Append("WHERE (id_nf = " & id_nf & ") and (tipo_reg = 1)")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.tipo_pessoa = dr(0)
@@ -154,9 +157,10 @@ Public Class clsNfeEntrega
         Me.cnpj = dr(9)
         Me.CEP = dr(10)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       MsgBox("ERRO AO LISTAR O ENDEREÇO DE RETIRADA: " & ex.Message() & "----------------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
     End Try
 
@@ -173,7 +177,9 @@ Public Class clsNfeEntrega
     str_builder.Append("WHERE (id_nf = " & id_nf & ") and (tipo_reg = 0)")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.tipo_pessoa = dr(0)
@@ -188,7 +194,7 @@ Public Class clsNfeEntrega
         Me.cnpj = dr(9)
         Me.CEP = dr(10)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
       MsgBox("ERRO AO LISTAR O ENDEREÇO DE ENTREGA DIFERENTE: " & ex.Message() & "----------------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
@@ -209,14 +215,17 @@ Public Class clsNfeEntrega
     str_builder.Append("SELECT * FROM NFE_entrega WHERE (id_nf = " & id_nf & ") and (tipo_reg = 1)")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       If dr.HasRows Then
         retorno = True
       End If
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       MsgBox("ERRO AO VERIFICAR O ENDEREÇO DE RETIRADA: " & ex.Message() & "----------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
     End Try
 
@@ -237,14 +246,17 @@ Public Class clsNfeEntrega
     str_builder.Append("SELECT * FROM NFE_entrega WHERE (id_nf = " & id_nf & ") and (tipo_reg = 0)")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       If dr.HasRows Then
         retorno = True
       End If
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       MsgBox("ERRO AO VERIFICAR O ENDEREÇO DE ENTREGA: " & ex.Message() & "--------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
     End Try
 

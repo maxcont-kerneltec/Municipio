@@ -8,7 +8,7 @@ Public Class clsNfeEmit
   Private _cnpj, _xNome, _xFant, _xLgr, _nro, _xCpl, _xBairro, _xMun, _UF, _CEP, _xPais, _fone, _IE, _IEST As String
   Private _IM, _CNAE As String
 
-
+  Private conexao1 As New SqlConnection
   Public Sub New()
 
   End Sub
@@ -235,7 +235,9 @@ Public Class clsNfeEmit
 
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
 
       Do While dr.Read()
         'Me.cnpj = dr(0)
@@ -260,8 +262,10 @@ Public Class clsNfeEmit
         Me.cnpj = dr(19)
       Loop
 
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       MsgBox("ERRO AO LISTAR O EMITENTE DA NOTA:" & ex.Message() & "--------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
     End Try
 

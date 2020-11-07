@@ -6,7 +6,7 @@ Public Class clsNfeReferenc
 
   Private _id_nf, _item, _cUF, _modd, _serie, _nNF, _result As Integer
   Private _refNFe, _AAMM, _cnpj, _UF, _msg_result As String
-
+  Private conexao1 As New SqlConnection
   Public Sub New()
 
   End Sub
@@ -114,7 +114,9 @@ Public Class clsNfeReferenc
 
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         row = table.NewRow()
@@ -133,9 +135,10 @@ Public Class clsNfeReferenc
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       MsgBox("ERRO AO LISTAR A NOTA FISCAL REFERENCIADA: " & ex.Message() & "---------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
     End Try
 
@@ -219,7 +222,9 @@ Public Class clsNfeReferenc
     str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (refNFe <> '') ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         row = table.NewRow()
@@ -229,7 +234,10 @@ Public Class clsNfeReferenc
 
         table.Rows.Add(row)
       Loop
+      conexao.FechaBanco(conexao1)
+      dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       MsgBox("ERRO AO BUSCAR AS NOTAS FISCAIS ELETRÔNICAS REFERENCIADAS PARA TRANSMISSÃO: " & ex.Message() & "----------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
     End Try
 
@@ -267,7 +275,9 @@ Public Class clsNfeReferenc
 
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read
         row = table.NewRow()
@@ -285,9 +295,10 @@ Public Class clsNfeReferenc
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       MsgBox("ERRO AO BUSCAR A NOTA FISCAL REFERENCIADA AO TRANSMITIR A NOTA: " & ex.Message() & "----------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
     End Try
 
@@ -324,7 +335,9 @@ Public Class clsNfeReferenc
     str_builder.Append("WHERE (id_nf = " & id_nf & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         row = table.NewRow()
@@ -342,9 +355,10 @@ Public Class clsNfeReferenc
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       MsgBox("ERRO AO BUSCAR O PRODUTOR RURAL AO TRANSMITIR A NF: " & ex.Message() & "--------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
     End Try
 

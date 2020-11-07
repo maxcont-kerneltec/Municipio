@@ -7,6 +7,8 @@ Public Class clsNfeInfoContrib
   Private _seq As Integer
   Private _xCampo, _xTexto, _msg_erro As String
 
+  Private conexao1 As New SqlConnection
+
   Public Sub New()
 
   End Sub
@@ -61,7 +63,10 @@ Public Class clsNfeInfoContrib
     str_builder.Append("SELECT seq, xCampo, xTexto FROM NFE_info_contrib WHERE (id_nf = " & id_nf & ")")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         row = table.NewRow()
@@ -72,9 +77,10 @@ Public Class clsNfeInfoContrib
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR AS INFORMAÇÕES DO CONTRIBUINTE: " & ex.Message() & "---------" & ex.StackTrace()
     End Try
 

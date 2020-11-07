@@ -24,6 +24,8 @@ Public Class clsNFEide
   Private _TOTvFCPUFDest, _ICMSTot_vICMSUFDest, _ICMSTot_vICMSUFRemet, _cob_vOrig, _retTransp_vServ, _retTransp_vBCRet, _retTransp_vICMSRet As Decimal
   Private _ICMSDestTot_vFCP, _ICMSDestTot_vFCPST, _ICMSDestTot_vFCPSTRet, _ICMSTot_vIPIDevol As Decimal
 
+  Private conexao1 As New SqlConnection
+
   Public Sub New()
 
   End Sub
@@ -1390,7 +1392,9 @@ Public Class clsNFEide
 
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.cUF = dr(0)
@@ -1460,9 +1464,10 @@ Public Class clsNFEide
           Me.inut_xJust = dr(15)
         Loop
       End If
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.msg_retorno = "ERRO AO CARREGAR A ABA DADOS: " & ex.StackTrace() & "---------" & ex.StackTrace()
     End Try
 
@@ -1517,7 +1522,9 @@ Public Class clsNFEide
     str_builder.Append("EXEC sp9_Pega_Totais_Uma_NFe '" & id_empresa & "','" & id_nf & "'")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.ICMSTot_vBC = dr(0)
@@ -1564,9 +1571,10 @@ Public Class clsNFEide
         Me.ICMSDestTot_vFCPSTRet = dr(41)
         Me.ICMSTot_vIPIDevol = dr(42)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.msg_retorno = "ERRO AO PEGAR OS TOTAIS DA NFE: " & ex.Message() & "--------------" & ex.StackTrace()
     End Try
   End Sub
@@ -1645,7 +1653,9 @@ Public Class clsNFEide
     str_builder.Append("WHERE (id_nf =  " & id_nf & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         transp_modFrete = dr(0)
@@ -1667,9 +1677,10 @@ Public Class clsNFEide
         veicTransp_RNTC = dr(16)
         retTransp_cUF = dr(17)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.msg_retorno = "ERRO AO PEGAR INFORMAÇÕES ABA TRANSPORTE: " & ex.Message() & "-----------" & ex.StackTrace()
     End Try
   End Sub
@@ -1712,15 +1723,18 @@ Public Class clsNFEide
     str_builder.Append("WHERE (id_nf = " & id_nf & ")")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.infCpl = dr(0)
         Me.infAdFisco = dr(1)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.msg_retorno = "ERRO AO PEGAR AS INFORMAÇÕES ADICIONAIS: " & ex.Message() & "--------" & ex.StackTrace()
     End Try
   End Sub
@@ -1753,7 +1767,9 @@ Public Class clsNFEide
     str_builder.Append("WHERE (id_nf = " & id_nf & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.exp_UFEmbarq = dr(0)
@@ -1763,9 +1779,10 @@ Public Class clsNFEide
         Me.exp_xCont = dr(4)
         Me.exp_xLocDespacho = dr(5)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.msg_retorno = "ERRO AO LISTAR EXPORTAÇÃO E COMPRAS: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
 
@@ -1805,7 +1822,9 @@ Public Class clsNFEide
     str_builder.Append("WHERE (id_nf = " & id_nf & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.cUF = dr(0)
@@ -1818,11 +1837,12 @@ Public Class clsNFEide
         Me.tpEmis = dr(7)
         cnpj = dr(8)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
 
       chave_acesso = CriaChaveNFe2G(Me.cUF, ano, mes, cnpj, Me.mod_descr, Me.serie, Me.nNF, Me.tpEmis, Me.cNF)
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.msg_retorno = "ERRO PEGAR OS DADOS PARA GERAR A CHAVE DE ACESSO: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
 
@@ -1924,15 +1944,18 @@ Public Class clsNFEide
     str_builder.Append("EXEC sp9_NFE_Apaga '" & id_empresa & "','" & id_nf & "','" & id_usuario & "'")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.result = dr(0)
         Me.msg_retorno = dr(1)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.result = -1
       Me.msg_retorno = "ERRO AO EXCLUÍR A NOTA FISCAL: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
@@ -1956,7 +1979,9 @@ Public Class clsNFEide
     str_builder.Append("EXEC sp9_NFe_Inutiliza_Pega '" & id_empresa & "','" & aaaamm & "'")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         row = table.NewRow()
@@ -1969,9 +1994,10 @@ Public Class clsNFEide
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.result = -1
       Me.msg_retorno = "ERRO AO LISTAR AS NOTAS FISCAIS PARA INUTILIZAÇÃO: " & ex.Message() & "--------" & ex.StackTrace()
     End Try
@@ -2000,7 +2026,9 @@ Public Class clsNFEide
     str_builder.Append("EXEC sp9_NFe_Inutiliza_Pega '" & id_empresa & "','" & aaaamm & "','0', '50'")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       dr.NextResult()
 
@@ -2017,9 +2045,10 @@ Public Class clsNFEide
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.result = -1
       Me.msg_retorno = "ERRO AO LISTAR AS NOTAS FISCAIS PARA INUTILIZAÇÃO: " & ex.Message() & "--------" & ex.StackTrace()
     End Try
@@ -2048,7 +2077,9 @@ Public Class clsNFEide
     End If
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       notas = NotasFiscais.CreateElement("NotasFiscais")
       NotasFiscais.AppendChild(notas)
@@ -2073,10 +2104,11 @@ Public Class clsNFEide
         xNome.InnerText = Trim(dr(3))
         nota.AppendChild(xNome)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
 
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.msg_retorno = "ERRO AO LISTAR AS NOTAS FISCAIS: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
 
@@ -2125,7 +2157,9 @@ Public Class clsNFEide
       End If
 
       Try
-        dr = conexao.RetornaDataReader(str_builder.ToString())
+        'dr = conexao.RetornaDataReader(str_builder.ToString())
+        conexao1 = conexao.AbreBanco()
+        dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
         Do While dr.Read()
           nota = NotasFiscais.CreateElement("NFe")
@@ -2151,11 +2185,12 @@ Public Class clsNFEide
           xNome.InnerText = Trim(dr(3))
           nota.AppendChild(xNome)
         Loop
-
+        conexao.FechaBanco(conexao1)
         dr.Close()
         dr = Nothing
 
       Catch ex As Exception
+        conexao.FechaBanco(conexao1)
         Dim erro As XmlElement
         erro = NotasFiscais.CreateElement("xErro")
         erro.InnerText = Trim("ERRO AO LISTAR AS NOTAS FISCAIS: " & ex.Message() & "----------" & ex.StackTrace())
@@ -2202,7 +2237,9 @@ Public Class clsNFEide
 
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       nota = NotasFiscais.CreateElement("LotesNotaFiscalServ")
       NotasFiscais.AppendChild(nota)
@@ -2224,8 +2261,10 @@ Public Class clsNFEide
         lotes.AppendChild(vlr_total_lote)
       Loop
 
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.msg_retorno = "ERRO AO LISTAR OS LOTES DAS NOTAS FISCAIS DE SERVIÇO: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
 
@@ -2266,13 +2305,20 @@ Public Class clsNFEide
     str_builder.Append("AND (id_empresa = " & id_empresa & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         caminho_xml = dr(0)
       Loop
 
+      conexao.FechaBanco(conexao1)
+      dr.Close()
+
+
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.msg_retorno = "ERRO AO PEGAR O CAMINHO DO XML: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
 
@@ -2294,7 +2340,9 @@ Public Class clsNFEide
 
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       notas = NotasFiscais.CreateElement("NotasFiscais")
       NotasFiscais.AppendChild(notas)
@@ -2323,9 +2371,10 @@ Public Class clsNFEide
         sts_nf.InnerText = dr(4)
         nota.AppendChild(sts_nf)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.msg_retorno = "ERRO AO GERAR O XML: " & ex.Message() & "-------------" & ex.StackTrace()
     End Try
 
@@ -2346,7 +2395,9 @@ Public Class clsNFEide
     str_builder.Append("EXEC sp9_NFe_Inutiliza_Pega '" & id_empresa & "','" & aaaamm & "'")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       notas = NotasFiscais.CreateElement("NotasFiscais")
       NotasFiscais.AppendChild(notas)
@@ -2374,18 +2425,19 @@ Public Class clsNFEide
         tpAmb = NotasFiscais.CreateElement("tpAmb")
         tpAmb.InnerText = dr(4)
         nota.AppendChild(tpAmb)
-		
-		cnpj_emp = NotasFiscais.CreateElement("cnpj_emp")
-		cnpj_emp.InnerText = dr(5)
-		nota.AppendChild(cnpj_emp)
-		
-		cUF = NotasFiscais.CreateElement("cUF")
-		cUF.InnerText = dr(6)
-		nota.AppendChild(cUF)
-      Loop
 
+        cnpj_emp = NotasFiscais.CreateElement("cnpj_emp")
+        cnpj_emp.InnerText = dr(5)
+        nota.AppendChild(cnpj_emp)
+
+        cUF = NotasFiscais.CreateElement("cUF")
+        cUF.InnerText = dr(6)
+        nota.AppendChild(cUF)
+      Loop
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.result = -1
       Me.msg_retorno = "ERRO AO LISTAR AS NOTAS FISCAIS PARA INUTILIZAÇÃO: " & ex.Message() & "--------" & ex.StackTrace()
     End Try

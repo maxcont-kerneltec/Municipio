@@ -3,6 +3,7 @@ Imports System.Data.SqlClient
 
 Public Class clsXmlRetornoStatusSefazSalva
 
+  Private conexao1 As New SqlConnection
   Public Sub New()
 
   End Sub
@@ -68,12 +69,14 @@ Public Class clsXmlRetornoStatusSefazSalva
     str_builder.Append(",'" & xCondUso & "','" & arq_xml & "','" & xJust & "'")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
-	  
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+
       Do While dr.Read()
         id_nf = dr(0)
       Loop
-	  
+      conexao.FechaBanco(conexao1)
       dr.Close()
 	  
 	  If tpEvento = 110111 Then 'CANCELAMENTO... realiza os cancelamentos abaixo...
@@ -96,8 +99,10 @@ Public Class clsXmlRetornoStatusSefazSalva
     str_builder.Append(",'" & nNFFim & "','" & xJust & "','" & nProt & "','" & dhRecbto & "','" & caminho_xml & "'")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.toString())
-
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao.FechaBanco(conexao1)
     Catch ex As Exception
       _xMotivo = "ERRO AO SALVAR AS INFORMAÇÕES DA INUTILIZAÇÃO NO BANCO DE DADOS: " & ex.Message() & "--------" & ex.StackTrace()
     End Try
@@ -193,12 +198,14 @@ Public Class clsXmlRetornoStatusSefazSalva
     str_builder.Append(",'" & cStat & "','" & xMotivo & "'")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.toString())
+      'dr = conexao.RetornaDataReader(str_builder.toString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         _xSolucao = dr(0)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
       _xMotivo = "ERRO AO SALVAR AS INFORMAÇÕES DO ERRO: " & ex.Message() & "-------" & ex.StackTrace()

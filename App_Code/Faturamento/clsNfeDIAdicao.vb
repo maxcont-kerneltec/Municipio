@@ -8,6 +8,8 @@ Public Class clsNfeDIAdicao
   Private _cFabricante, _msg_erro As String
   Private _vDescDI As Decimal
 
+  Private conexao1 As New SqlConnection
+
   Public Sub New()
 
   End Sub
@@ -145,7 +147,9 @@ Public Class clsNfeDIAdicao
     str_builder.Append("ORDER BY seq ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         row = table.NewRow()
@@ -162,7 +166,7 @@ Public Class clsNfeDIAdicao
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
       _msg_erro = "ERRO AO LISTAR AS ADIÇÕES DA DI: " & ex.Message() & "--------" & ex.StackTrace()

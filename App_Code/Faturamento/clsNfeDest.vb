@@ -7,6 +7,8 @@ Public Class clsNfeDest
   Private _tipo_pessoa, _cnpj, _xNome, _xLgr, _nro, _xCpl, _xBairro, _xMun, _UF, _CEP, _xPais, _fone, _IE, _IM As String
   Private _ISUF, _email, _IM_Eventual As String
 
+  Private conexao1 As New SqlConnection
+
   Public Sub New()
 
   End Sub
@@ -241,7 +243,9 @@ Public Class clsNfeDest
     str_builder.Append("WHERE (id_dest = " & id_dest & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         'Me.cnpj = dr(0)
@@ -266,9 +270,10 @@ Public Class clsNfeDest
         Me.IM = dr(19)
         Me.id_cliente = dr(20)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As System.Exception
+      conexao.FechaBanco(conexao1)
       MsgBox("ERRO AO BUSCAR O DESTINATÁRIO DA NF: " & ex.Message() & "--------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
     End Try
 

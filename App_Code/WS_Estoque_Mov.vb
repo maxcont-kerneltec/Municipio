@@ -53,15 +53,15 @@ Public Class WS_Estoque_Mov
         txt_cabecalho = txt_cabecalho & "vlr_custo|{"
 
       If reader.HasRows Then
-          Do While reader.Read()
+        Do While reader.Read()
 
           txt_cabecalho = txt_cabecalho & reader.GetString(0) 'dados concatenados na procedure
 
           'sw.WriteLine(txt_cabecalho)
         Loop
-        End If
-        cnn.Close()
       End If
+      cnn.Close()
+    End If
       Return txt_cabecalho
   End Function
 

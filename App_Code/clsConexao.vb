@@ -24,7 +24,7 @@ Public Class clsConexao
     Return conectar
   End Function
 
-  Private Sub FechaBanco(ByVal conectar As SqlConnection) 'Fecha o SQL
+  Public Sub FechaBanco(ByVal conectar As SqlConnection) 'Fecha o SQL
 
     If conectar.State = ConnectionState.Open Then
 
@@ -108,6 +108,38 @@ Public Class clsConexao
     Catch ex As Exception
       Throw ex
     End Try
+  End Function
+
+
+  Public Function RetornaDataReader_Conexao(ByVal funcao As String, conexao_data_reader As SqlConnection) As SqlDataReader
+
+    Try
+      'conexao1 = AbreBanco()
+
+      'Dim SQLcomando As SqlDataReader
+
+      Dim comandos As New SqlCommand
+
+      With comandos
+        .CommandText = funcao
+        .CommandType = CommandType.Text
+        .Connection = conexao_data_reader
+      End With
+
+      'SQLcomando = comandos.ExecuteReader(CommandBehavior.CloseConnection) 'Return comandos.ExecuteReader(CommandBehavior.CloseConnection)
+      Return comandos.ExecuteReader(CommandBehavior.CloseConnection)
+      'FechaBanco(conexao1)
+
+    Catch ex As Exception
+      Throw ex
+      FechaBanco(conexao_data_reader)
+
+      'Finally
+
+      'FechaBanco(conexao1)
+
+    End Try
+
   End Function
 
   Public Function RetornarDataTable(ByVal cmd As SqlCommand) As DataTable

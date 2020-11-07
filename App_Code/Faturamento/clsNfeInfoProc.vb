@@ -6,6 +6,7 @@ Public Class clsNfeInfoProc
 
   Private _seq, _indProc As Integer
   Private _nProc, _msg_erro As String
+  Private conexao1 As New SqlConnection
 
   Public Sub New()
 
@@ -61,7 +62,10 @@ Public Class clsNfeInfoProc
     str_builder.Append("SELECT seq, nProc, indProc FROM NFE_info_proc WHERE (id_nf = " & id_nf & ")")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+
 
       Do While dr.Read()
         row = table.NewRow()
@@ -73,8 +77,11 @@ Public Class clsNfeInfoProc
         table.Rows.Add(row)
       Loop
 
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR OS PROCESSOS REFERENCIADOS: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
 

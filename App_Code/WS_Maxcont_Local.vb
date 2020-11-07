@@ -50,10 +50,14 @@ Public Class WS_Maxcont_Local
     Dim cria_xml As New clsCriaXmlNFeVersao4
     Dim ajuste As New clsAjuste
     'Dim caminho_pasta As String = ajuste.GetFilePathFaturamentoSaveNFe(id_empresa)
-    Dim caminho_salva As String = ajuste.GetFilePathFaturamentoSaveNFe(id_empresa)
 
-    Dim caminho_salva_temp As String = ajuste.GetFilePathTempEmpresa(id_empresa)
+    'SERVIDOR
+    'Dim caminho_salva As String = ajuste.GetFilePathFaturamentoSaveNFe(id_empresa)
+    'Dim caminho_salva_temp As String = ajuste.GetFilePathTempEmpresa(id_empresa)
 
+    'TESTE LOCAL
+    Dim caminho_salva_temp = "C:\inetpub\wwwroot\Maxcont2017\Temp"
+    Dim caminho_salva As String = "C:\inetpub\wwwroot\Maxcont2017\Temp"
 
     Dim aaaamm As String
 

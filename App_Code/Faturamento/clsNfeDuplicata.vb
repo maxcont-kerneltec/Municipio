@@ -7,6 +7,7 @@ Public Class clsNfeDuplicata
   Private _seq, _ano, _id_mf_receber, _id_mf_pagar, _id_parc, _id_carteira, _fComissao, _result As Integer
   Private _nDup, _dVenc, _fFinanc_Baixa_Auto, _msg_result, _msg_erro As String
   Private _vDup As Decimal
+  Private conexao1 As New SqlConnection
 
   Public Sub New()
 
@@ -158,7 +159,9 @@ Public Class clsNfeDuplicata
 
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         row = table.NewRow()
@@ -174,9 +177,10 @@ Public Class clsNfeDuplicata
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As System.Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR AS DUPLICATAS DA NOTA: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
 
@@ -198,13 +202,15 @@ Public Class clsNfeDuplicata
     str_builder.Append("EXEC sp9_NFE_Cobranca_Gera '" & id_nf & "','" & cond_pag & "','T'")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         _result = dr(0)
         _msg_result = dr(1)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
       _msg_erro = "ERRO AO GERAR AS DUPLICATAS NA NOTA: " & ex.Message() & "------------" & ex.StackTrace()
@@ -235,9 +241,13 @@ Public Class clsNfeDuplicata
     str_builder.Append(",'" & vDup & "','I','" & id_carteira & "'")
 
     Try
-      conexao.RetornaDataReader(str_builder.ToString())
+      'conexao.RetornaDataReader(str_builder.ToString())
 
+      conexao1 = conexao.AbreBanco()
+      conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+      conexao.FechaBanco(conexao1)
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO INSERIR A DUPLICATA NA NOTA FISCAL: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
   End Sub
@@ -252,9 +262,13 @@ Public Class clsNfeDuplicata
     str_builder.Append(",'" & vDup & "','I','" & id_carteira & "'")
 
     Try
-      conexao.RetornaDataReader(str_builder.ToString())
+      'conexao.RetornaDataReader(str_builder.ToString())
 
+      conexao1 = conexao.AbreBanco()
+      conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+      conexao.FechaBanco(conexao1)
     Catch ex As System.Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO ALTERAR A DUPLICATA NA NOTA FISCAL: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
   End Sub

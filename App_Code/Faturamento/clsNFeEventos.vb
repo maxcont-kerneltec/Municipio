@@ -7,7 +7,7 @@ Public Class clsNFeEventos
   Private _id_nf, _tpEvento, _nSeqEvento, _cUF, _tpAmb, _nNF, _result, _serie As Integer
   Private _dhEvento, _xCorrecao, _xCondUso, _cProt, _arq_xml, _xJust, _sig_chNFe, _cnpj, _sig_nProt, _msg_result As String
   Private _cnpj_emp As String
-
+  Private conexao1 As New SqlConnection
   Public Sub New()
 
   End Sub
@@ -215,7 +215,9 @@ Public Class clsNFeEventos
 
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         row = table.NewRow()
@@ -231,9 +233,10 @@ Public Class clsNFeEventos
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.result = -1
       Me.msg_result = "ERRO AO LISTAR AS NOTAS FISCAIS REFERENCIADAS: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
@@ -259,7 +262,9 @@ Public Class clsNFeEventos
     str_builder.Append("WHERE A.id_nf = " & id_nf & "")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.nNF = dr(0)
@@ -269,9 +274,10 @@ Public Class clsNFeEventos
         Me.cnpj = dr(4)
         Me.nSeqEvento = dr(5)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.result = -1
       Me.msg_result = "ERRO AO PEGAR AS INFORMAÇÕES PARA CARTA DE CORREÇÃO: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
@@ -294,7 +300,9 @@ Public Class clsNFeEventos
     str_builder.Append("WHERE(A.id_nf = " & id_nf & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.nNF = dr(0)
@@ -305,9 +313,10 @@ Public Class clsNFeEventos
         Me.cnpj = dr(5)
         Me.nSeqEvento = dr(6)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.result = -1
       Me.msg_result = "ERRO AO PEGAR AS INFORMAÇÕES PARA GERAR O CANCELAMENTO DA NOTA FISCAL: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
@@ -324,15 +333,18 @@ Public Class clsNFeEventos
     str_builder.Append("WHERE (id_empresa = " & id_empresa & " )")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read
         Me.cnpj_emp = dr(0)
         Me.cUF = dr(1)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.result = -1
       Me.msg_result = "ERRO AO PEGAR AS INFORMAÇÕES PARA INUTILIZAÇÃO: " & ex.Message() & "----------" & ex.StackTrace()
     End Try

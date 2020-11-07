@@ -7,6 +7,8 @@ Public Class clsNfeRetECF
   Private _id_nf, _id_ret_ecf, _id_mod, _nECF, _nCOO, _result As Integer
   Private _msg_result As String
 
+  Private conexao1 As New SqlConnection
+
   Public Sub New()
 
   End Sub
@@ -94,7 +96,10 @@ Public Class clsNfeRetECF
 
 
     Try
-      dr = conexao.RetornaDataReader(str_builer.ToString())
+      'dr = conexao.RetornaDataReader(str_builer.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builer.ToString(), conexao1)
+
 
       Do While dr.Read()
         row = table.NewRow()
@@ -107,9 +112,10 @@ Public Class clsNfeRetECF
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       MsgBox("ERRO AO LISTAR O ECF: " & ex.Message() & "------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
     End Try
 

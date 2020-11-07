@@ -8,7 +8,7 @@ Public Class clsNfeDI
   Private _nItem, _id_di, _tpViaTransp, _tpIntermedio As Integer
   Private _nDI, _dDI, _xLocalDesemb, _UFDesemb, _dDesemb, _cExportador, _UFTerceiro, _CNPJ, _msg_erro As String
   Private _vAFRMM As Decimal
-
+  Private conexao1 As New SqlConnection
   Public Sub New()
 
   End Sub
@@ -174,7 +174,9 @@ Public Class clsNfeDI
 
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         row = table.NewRow
@@ -188,9 +190,10 @@ Public Class clsNfeDI
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR A DI DO ITEM: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
 

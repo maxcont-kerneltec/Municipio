@@ -7,6 +7,7 @@ Public Class clsNfeVolumes
   Private _id_nf, _seq, _qVol As Integer
   Private _esp, _marca, _nVol, _msg_erro As String
   Private _pesoL, _pesoB As Decimal
+  Private conexao1 As New SqlConnection
 
   Public Sub New()
 
@@ -114,7 +115,10 @@ Public Class clsNfeVolumes
 
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+
 
       Do While dr.Read()
         row = table.NewRow()
@@ -129,9 +133,10 @@ Public Class clsNfeVolumes
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR O VOLUME DA NOTA: " & ex.Message() & "-------------" & ex.StackTrace()
     End Try
 

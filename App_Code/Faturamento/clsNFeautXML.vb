@@ -5,6 +5,8 @@ Public Class clsNFeAutXML
   Private _id_nf, _cnpj As Integer
   Private _tipo_pessoa As String
 
+  Private conexao1 As New SqlConnection
+
   Property id_nf() As Integer
     Get
       Return _id_nf
@@ -48,7 +50,9 @@ Public Class clsNFeAutXML
     str_builder.Append("WHERE (id_nf = " & id_nf & ")")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         row = table.NewRow()
@@ -58,7 +62,10 @@ Public Class clsNFeAutXML
 
         table.Rows.Add(row)
       Loop
+      conexao.FechaBanco(conexao1)
+      dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       MsgBox("ERRO AO BUSCAR OS CNPJs autorizados: " & ex.Message() & "----------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
     End Try
 
