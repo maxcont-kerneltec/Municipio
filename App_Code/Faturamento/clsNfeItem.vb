@@ -23,7 +23,9 @@ Public Class clsNfeItem
   Private _ICMS_vICMS2, _ICMS_vOutra, _ICMS_vIsenta, _IPI_vBC2, _IPI_pIPI2, _IPI_vIPI2, _IPI_vOutra, _IPI_vIsenta, _vTotTrib As Decimal
   Private _aliq_vTrib, _ICMS_vICMSDeson, _IRRF_pIRRF, _CSLL_pCSLL, _INSS_pINSS, _soma_tributos, _IPI_pDevol, _IPI_vIPIDevol As Decimal
   Private _ICMS_vICMSOp, _ICMS_pDif, _ICMS_vICMSDif As Decimal
+  Private _ICMS_vICMSSubstituto As Decimal
 
+  Private conexao1 As New SqlConnection
 
   Public Sub New()
 
@@ -323,6 +325,15 @@ Public Class clsNfeItem
     End Get
     Set(value As Decimal)
       _ICMS_vICMSDif = value
+    End Set
+  End Property
+
+  Property ICMS_vICMSSubstituto() As Decimal
+    Get
+      Return _ICMS_vICMSSubstituto
+    End Get
+    Set(value As Decimal)
+      _ICMS_vICMSSubstituto = value
     End Set
   End Property
 
@@ -1044,7 +1055,9 @@ Public Class clsNfeItem
     str_builder.Append("WHERE id_nf = " & id_nf & "")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         row = table.NewRow()
@@ -1055,9 +1068,10 @@ Public Class clsNfeItem
 
         table.Rows.Add(row)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As System.Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR OS ITENS DA NOTA FISCAL:  " & ex.Message() & "------------" & ex.StackTrace()
     End Try
 
@@ -1118,7 +1132,9 @@ Public Class clsNfeItem
     str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.nItem = dr(0)
@@ -1153,9 +1169,10 @@ Public Class clsNfeItem
         Me.id_cliente = dr(29)
         Me.nNF = dr(30)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO PEGAR AS INFORMAÇÕES DO PRODUTO ABA DADOS: " & ex.Message() & "-------" & ex.StackTrace()
     End Try
 
@@ -1237,12 +1254,15 @@ Public Class clsNfeItem
     str_builder.Append("COFINS_CST, COFINS_vBC, COFINS_pCOFINS, COFINS_vCOFINS, COFINS_qBCProd, COFINS_vAliqProd, ")
     str_builder.Append("COFINSST_vBC, COFINSST_pCOFINS, COFINSST_qBCProd, COFINSST_vAliqProd, COFINSST_vCOFINS, ")
     str_builder.Append("ISSQN_vBC, ISSQN_vAliq, ISSQN_vISSQN, ISSQN_cMunFG, ISSQN_cListServ, ISSQN_cSitTrib, @CRT, ")
-    str_builder.Append("ICMS_vICMSDeson, ISNULL(ICMS_UFST, '--'), vTotTrib, ISNULL(ICMS_vICMSOp, 0), ISNULL(ICMS_pDif, 0), ISNULL(ICMS_vICMSDif, 0) ")
+    str_builder.Append("ICMS_vICMSDeson, ISNULL(ICMS_UFST, '--'), vTotTrib, ISNULL(ICMS_vICMSOp, 0), ISNULL(ICMS_pDif, 0), ISNULL(ICMS_vICMSDif, 0), ")
+    str_builder.Append("ISNULL(vICMSSubstituto, 0) ")
     str_builder.Append("FROM NFE_item ")
     str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.ICMS_orig = dr(0)
@@ -1317,10 +1337,12 @@ Public Class clsNfeItem
         _ICMS_vICMSOp = dr(69)
         _ICMS_pDif = dr(70)
         _ICMS_vICMSDif = dr(71)
+        Me.ICMS_vICMSSubstituto = dr(72)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO PEGAR AS INFORMAÇÕES DA ABA TRIBUTOS: " & ex.Message() & "-------" & ex.StackTrace()
     End Try
   End Sub
@@ -1383,7 +1405,9 @@ Public Class clsNfeItem
     str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.IPI_clEnq = dr(0)
@@ -1398,9 +1422,10 @@ Public Class clsNfeItem
         Me.IPI_vUnid = dr(9)
         Me.IPI_vIPI = dr(10)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO CARREGAR A ABA IPI: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
 
@@ -1443,7 +1468,9 @@ Public Class clsNfeItem
     str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.PIS_CST = dr(0)
@@ -1458,9 +1485,10 @@ Public Class clsNfeItem
         Me.PISST_vAliqProd = dr(9)
         Me.PISST_vPIS = dr(10)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO PEGAR AS INFORMAÇÕES DA ABA PIS: " & ex.Message() & "--------------" & ex.StackTrace()
     End Try
 
@@ -1511,7 +1539,9 @@ Public Class clsNfeItem
     str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.COFINS_CST = dr(0)
@@ -1526,9 +1556,10 @@ Public Class clsNfeItem
         Me.COFINS_vAliqProd = dr(9)
         Me.COFINSST_vCOFINS = dr(10)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR AS INFORMAÇÕES DA ABA COFINS: " & ex.Message() & "---------" & ex.StackTrace()
     End Try
   End Sub
@@ -1577,7 +1608,9 @@ Public Class clsNfeItem
     str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.ISSQN_vBC = dr(0)
@@ -1588,8 +1621,10 @@ Public Class clsNfeItem
         Me.ISSQN_cSitTrib = dr(5)
       Loop
 
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR AS INFORMAÇÕES DA ABA COFINS: " & ex.Message() & "-------------" & ex.StackTrace()
     End Try
 
@@ -1628,7 +1663,9 @@ Public Class clsNfeItem
     str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.II_vBC = dr(0)
@@ -1637,8 +1674,10 @@ Public Class clsNfeItem
         Me.II_vIOF = dr(3)
       Loop
 
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR AS INFORMAÇOES DA ABA II: " & ex.Message() & "---------" & ex.StackTrace()
     End Try
   End Sub
@@ -1688,15 +1727,18 @@ Public Class clsNfeItem
     str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ") ")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
 
       Do While dr.Read()
         Me.IPI_pDevol = dr(0)
         Me.IPI_vIPIDevol = dr(1)
       Loop
-
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR AS INFORMAÇÕES DA ABA IPI DEVOLVIDO: " & ex.Message() & "------------" & ex.StackTrace()
     End Try
   End Sub
@@ -1754,14 +1796,19 @@ Public Class clsNfeItem
     str_builder.Append(",'" & qtde & "','" & vlr_unitario & "','S'")
 
     Try
-      dr = conexao.RetornaDataReader(str_builder.ToString())
+      'dr = conexao.RetornaDataReader(str_builder.ToString())
+      conexao1 = conexao.AbreBanco()
+      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+
 
       Do While dr.Read()
         Me.nItem = dr(0)
       Loop
 
+      conexao.FechaBanco(conexao1)
       dr.Close()
     Catch ex As Exception
+      conexao.FechaBanco(conexao1)
       Me.nItem = -1
       _msg_erro = "ERRO AO INSERIR O ITEM AO NOTA FISCAL: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
