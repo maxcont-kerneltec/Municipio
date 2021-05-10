@@ -851,57 +851,63 @@ Public Class WS_Estoque
     'INÍCIO GRAVA ARQUIVO XML
     If txt_XML <> "" Then
 
-      ' Create the XmlDocument.
-      Dim doc As XmlDocument = New XmlDocument()
-      doc.LoadXml(txt_XML)
+      Try
 
-      ' Save the document to a file. White space is
-      ' preserved (no white space).
-      doc.PreserveWhitespace = True
+        ' Create the XmlDocument.
+        Dim doc As XmlDocument = New XmlDocument()
+        doc.LoadXml(txt_XML)
 
-      'Cria data para gerar nome de arquivo
-      Dim data As Date = Date.Now
+        ' Save the document to a file. White space is
+        ' preserved (no white space).
+        doc.PreserveWhitespace = True
+
+        'Cria data para gerar nome de arquivo
+        Dim data As Date = Date.Now
 
 
-      Dim Posic As Integer = 0
+        Dim Posic As Integer = 0
 
-      Posic = txt_XML.IndexOf("infCFe")
+        Posic = txt_XML.IndexOf("infCFe")
 
-      Dim nome_arquivo As String = ""
+        Dim nome_arquivo As String = ""
 
-      'CFE (Pega chave de acordo com conteúdo da string)
-      If txt_XML.Substring(0, 5) = "<CFe>" Then
-        nome_arquivo = "AD" & txt_XML.Substring(Posic + 14, 44)
-        'CFE CANCELAMENTO
-      ElseIf txt_XML.Substring(0, 9) = "<CFeCanc>" Then
-        nome_arquivo = "ADC" & txt_XML.Substring(Posic + 14, 44)
-      Else
-        'NÃO LOCALIZOU ARQUIVO VÁLIDO, GRAVA NOME DE ARQUIVO COM DATA E HORA
-        nome_arquivo = data.Year & data.Month & data.Day & "_" & data.Hour & data.Minute & data.Second
-      End If
+        'CFE (Pega chave de acordo com conteúdo da string)
+        If txt_XML.Substring(0, 5) = "<CFe>" Then
+          nome_arquivo = "AD" & txt_XML.Substring(Posic + 14, 44)
+          'CFE CANCELAMENTO
+        ElseIf txt_XML.Substring(0, 9) = "<CFeCanc>" Then
+          nome_arquivo = "ADC" & txt_XML.Substring(Posic + 14, 44)
+        Else
+          'NÃO LOCALIZOU ARQUIVO VÁLIDO, GRAVA NOME DE ARQUIVO COM DATA E HORA
+          nome_arquivo = data.Year & data.Month & data.Day & "_" & data.Hour & data.Minute & data.Second
+        End If
 
-      'Pasta onde serão armazendos os arquivos XMLs
-      Dim path As String = Server.MapPath("../../Sat/Docs/" & CStr(id_empresa))
-      If Not Directory.Exists(path) Then
-        Directory.CreateDirectory(path)
-      End If
+        'Pasta onde serão armazendos os arquivos XMLs
+        Dim path As String = Server.MapPath("../../Sat/Docs/" & CStr(id_empresa))
+        If Not Directory.Exists(path) Then
+          Directory.CreateDirectory(path)
+        End If
 
-      'Pasta ano_mes
-      Dim mes As String = "00" & data.Month
-      mes = Microsoft.VisualBasic.Right(mes, 2)
+        'Pasta ano_mes
+        Dim mes As String = "00" & data.Month
+        mes = Microsoft.VisualBasic.Right(mes, 2)
 
-      Dim Pasta As String = data.Year & mes
+        Dim Pasta As String = data.Year & mes
 
-      path = path & "\" & Pasta
-      If Not Directory.Exists(path) Then
-        Directory.CreateDirectory(path)
-      End If
+        path = path & "\" & Pasta
+        If Not Directory.Exists(path) Then
+          Directory.CreateDirectory(path)
+        End If
 
-      'caminho completo onde será salvo o arquivo
-      xml_url = path & "\" & nome_arquivo & ".xml"
+        'caminho completo onde será salvo o arquivo
+        xml_url = path & "\" & nome_arquivo & ".xml"
 
-      'Salva arquivo XML
-      doc.Save(path & "\" & nome_arquivo & ".xml")
+        'Salva arquivo XML
+        doc.Save(path & "\" & nome_arquivo & ".xml")
+      Catch ex As Exception
+
+      End Try
+
 
     End If
     'FIM GRAVA ARQUIVO XML
