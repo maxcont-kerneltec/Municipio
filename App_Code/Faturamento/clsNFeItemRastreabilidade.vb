@@ -89,7 +89,7 @@ Public Class clsNFeItemRastreabilidade
 
     str_builder.Append("SELECT seq, nLote, qLote, dFab, dVal, cAgreg ")
     str_builder.Append("FROM NFe_Item_Rastreabilidade ")
-    str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ") ")
+    str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ")  AND (isnull(nLote, '') <> '')")
 
     Try
       dr = conexao.RetornaDataReader(str_builder.ToString())
