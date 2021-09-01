@@ -195,6 +195,9 @@ Public Class clsCriaXmlNFeVersao4
     TotalNfe(writer) 'W. Total da NF-e
     Transportadora(writer) 'X. Informações do Transporte da NF-e
     Cobranca(writer) 'Y. Dados da Cobrança
+
+    'PegaInfIntermed(writer) 'Y. dados do Intermediador
+
     InformacoesAdicionais(writer) 'Z. Informações Adicionais da NF-e
     If id_empresa = 830 Or id_empresa = 328 Or id_empresa = 1734 Or id_empresa = 779 Then
       ResponsavelTecnico(writer) 'Identificação do responsável técnico
@@ -303,6 +306,10 @@ Public Class clsCriaXmlNFeVersao4
       writer.WriteStartElement("indPres")
       writer.WriteString(nfe.indPres)
       writer.WriteEndElement()
+
+      'writer.WriteStartElement("indIntermed")
+      'writer.WriteString(nfe.indPres)
+      'writer.WriteEndElement()
 
       writer.WriteStartElement("procEmi")
       writer.WriteString(nfe.procEmi)
@@ -1212,6 +1219,10 @@ Public Class clsCriaXmlNFeVersao4
         Else
           writer.WriteStartElement("tPag")
           writer.WriteString("99") 'Outros
+          writer.WriteEndElement()
+
+          writer.WriteStartElement("xPag")
+          writer.WriteString("OUTROS") 'Outros
           writer.WriteEndElement()
         End If
 
@@ -3715,6 +3726,40 @@ Public Class clsCriaXmlNFeVersao4
           writer.WriteEndElement() 'FIM dup
 
         Next
+      End If
+    Catch ex As Exception
+      'MsgBox("ERRO AO PEGAR AS INFORMAÇÕES DA DUPLICATA PARA ENVIO DA NFE: " & ex.Message() & "---------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
+      writer.WriteStartElement("ERRO")
+      writer.WriteString("ERRO AO PEGAR AS INFORMAÇÕES DA DUPLICATA PARA ENVIO DA NFE: " & ex.Message() & "---------" & ex.StackTrace())
+      writer.WriteEndElement()
+    End Try
+  End Sub
+
+  Private Sub PegaInfIntermed(ByVal writer As XmlTextWriter)
+    Dim InfIntermed As New clsNFeInfIntermed
+    Dim dv As New DataView
+    Dim ajuste As New clsAjuste
+    Dim vDup As Decimal
+
+    Try
+      dv = InfIntermed.PegaInfIntermed(Me.id_nf)
+
+      If dv.Count > 0 Then
+        writer.WriteStartElement("infIntermed")
+        For Each drv As DataRowView In dv
+          writer.WriteStartElement("CNPJ")
+
+          writer.WriteString(drv(0))
+          writer.WriteEndElement()
+
+          writer.WriteStartElement("idCadIntTran")
+          writer.WriteString(drv(1))
+          writer.WriteEndElement()
+
+
+
+        Next
+        writer.WriteEndElement() 'FIM intermediador
       End If
     Catch ex As Exception
       'MsgBox("ERRO AO PEGAR AS INFORMAÇÕES DA DUPLICATA PARA ENVIO DA NFE: " & ex.Message() & "---------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")

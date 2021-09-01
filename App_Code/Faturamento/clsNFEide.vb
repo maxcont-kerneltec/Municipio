@@ -23,12 +23,22 @@ Public Class clsNFEide
   Private _ISSQNtot_vServ, _cob_nFatob_vOrig, _cob_vDesc, _cob_vLiq, _ICMS_vCredICMSSN, _pCred_ICMS, _retTransp_pICMSRet As Decimal
   Private _TOTvFCPUFDest, _ICMSTot_vICMSUFDest, _ICMSTot_vICMSUFRemet, _cob_vOrig, _retTransp_vServ, _retTransp_vBCRet, _retTransp_vICMSRet As Decimal
   Private _ICMSDestTot_vFCP, _ICMSDestTot_vFCPST, _ICMSDestTot_vFCPSTRet, _ICMSTot_vIPIDevol As Decimal
+  Private _indIntermed As String
 
   Private conexao1 As New SqlConnection
 
   Public Sub New()
 
   End Sub
+
+  Property indIntermed() As String
+    Get
+      Return _indIntermed
+    End Get
+    Set(value As String)
+      _indIntermed = value
+    End Set
+  End Property
 
   Property msg_grava() As String
     Get
@@ -1440,6 +1450,7 @@ Public Class clsNFEide
         Me.sts_NF_c = dr(40)
         Me.id_emit = dr(41)
         Me.id_dest = dr(42)
+        Me.indIntermed = dr(45)
       Loop
 
       dr.NextResult() 'Informações de retorno da nota transimita ao governo...
