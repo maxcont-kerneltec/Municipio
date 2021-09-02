@@ -196,7 +196,7 @@ Public Class clsCriaXmlNFeVersao4
     Transportadora(writer) 'X. Informações do Transporte da NF-e
     Cobranca(writer) 'Y. Dados da Cobrança
 
-    'PegaInfIntermed(writer) 'Y. dados do Intermediador
+    PegaInfIntermed(writer) 'Y. dados do Intermediador
 
     InformacoesAdicionais(writer) 'Z. Informações Adicionais da NF-e
     If id_empresa = 830 Or id_empresa = 328 Or id_empresa = 1734 Or id_empresa = 779 Then
@@ -307,9 +307,11 @@ Public Class clsCriaXmlNFeVersao4
       writer.WriteString(nfe.indPres)
       writer.WriteEndElement()
 
-      'writer.WriteStartElement("indIntermed")
-      'writer.WriteString(nfe.indPres)
-      'writer.WriteEndElement()
+      If nfe.indIntermed <> 0 Then
+        writer.WriteStartElement("indIntermed")
+        writer.WriteString(nfe.indIntermed)
+        writer.WriteEndElement()
+      End If
 
       writer.WriteStartElement("procEmi")
       writer.WriteString(nfe.procEmi)
@@ -1220,13 +1222,14 @@ Public Class clsCriaXmlNFeVersao4
           writer.WriteStartElement("tPag")
           writer.WriteString("99") 'Outros
           writer.WriteEndElement()
-
-          writer.WriteStartElement("xPag")
-          writer.WriteString("OUTROS") 'Outros
-          writer.WriteEndElement()
+          If id_empresa = 830 Or id_empresa = 328 Or id_empresa = 1734 Or id_empresa = 779 Then
+            writer.WriteStartElement("xPag")
+            writer.WriteString("OUTROS") 'Outros
+            writer.WriteEndElement()
+          End If
         End If
 
-        writer.WriteStartElement("vPag")
+          writer.WriteStartElement("vPag")
         writer.WriteString(vLiq.ToString("0.00").Replace(",", "."))
         writer.WriteEndElement()
 
