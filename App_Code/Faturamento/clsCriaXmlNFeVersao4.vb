@@ -1170,6 +1170,12 @@ Public Class clsCriaXmlNFeVersao4
           writer.WriteString(Right("00" & drv(1), 2))
           writer.WriteEndElement()
 
+          If (Right("00" & drv(1), 2) = "99") Then
+            writer.WriteStartElement("xPag")
+            writer.WriteString("OUTROS") 'Outros
+            writer.WriteEndElement()
+          End If
+
           writer.WriteStartElement("vPag")
           writer.WriteString(vPag.ToString("0.00").Replace(",", "."))
           writer.WriteEndElement()
@@ -1222,11 +1228,11 @@ Public Class clsCriaXmlNFeVersao4
           writer.WriteStartElement("tPag")
           writer.WriteString("99") 'Outros
           writer.WriteEndElement()
-          If id_empresa = 830 Or id_empresa = 328 Or id_empresa = 1734 Or id_empresa = 779 Then
-            writer.WriteStartElement("xPag")
-            writer.WriteString("OUTROS") 'Outros
-            writer.WriteEndElement()
-          End If
+          'If id_empresa = 830 Or id_empresa = 328 Or id_empresa = 1734 Or id_empresa = 779 Then
+          writer.WriteStartElement("xPag")
+          writer.WriteString("OUTROS") 'Outros
+          writer.WriteEndElement()
+          'End If
         End If
 
           writer.WriteStartElement("vPag")
@@ -3743,6 +3749,7 @@ Public Class clsCriaXmlNFeVersao4
     Dim dv As New DataView
     Dim ajuste As New clsAjuste
     Dim vDup As Decimal
+    Dim CNPJ As String
 
     Try
       dv = InfIntermed.PegaInfIntermed(Me.id_nf)
@@ -3751,8 +3758,9 @@ Public Class clsCriaXmlNFeVersao4
         writer.WriteStartElement("infIntermed")
         For Each drv As DataRowView In dv
           writer.WriteStartElement("CNPJ")
-
-          writer.WriteString(drv(0))
+          CNPJ = drv(0).
+          writer.WriteString(ajuste.FormataCNPJ(drv(0), FormataCnpj.semCaracter))
+          'writer.WriteString()
           writer.WriteEndElement()
 
           writer.WriteStartElement("idCadIntTran")

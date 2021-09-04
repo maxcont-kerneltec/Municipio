@@ -50,7 +50,7 @@ Public Class clsNFeInfIntermed
     table.Columns.Add(New DataColumn("infIntermed_CNPJ"))
     table.Columns.Add(New DataColumn("infIntermed_idCadIntTran"))
     table.Columns.Add(New DataColumn("indIntermed"))
-    str_builder.Append("SELECT infIntermed_CNPJ, infIntermed_idCadIntTran, indIntermed ")
+    str_builder.Append("SELECT dbo.fCNPJ_Le(infIntermed_CNPJ) as infIntermed_CNPJ, infIntermed_idCadIntTran, indIntermed ")
     str_builder.Append("FROM dbo.NFE_dados AS A ")
     str_builder.Append("WHERE (A.id_nf = " & id_nf & ") AND (A.infIntermed_CNPJ > 0)")
 
