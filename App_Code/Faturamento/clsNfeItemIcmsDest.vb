@@ -6,7 +6,6 @@ Public Class clsNfeItemIcmsDest
   Private _vBCUFDest, _pFCPUFDest, _pICMSUFDest, _pICMSInter, _pICMSInterPart, _vFCPUFDest, _vICMSUFDest As Decimal
   Private _vICMSUFRemet, _vBCFCPUFDest, _vBCFCPST, _pFCPST, _vFCPST As Decimal
   Private _msg_erro As String
-  Private conexao1 As New SqlConnection
 
   Public Sub New()
 
@@ -140,9 +139,7 @@ Property vFCPST() As Decimal
     str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ") ")
 
     Try
-      'dr = conexao.RetornaDataReader(str_builder.ToString())
-      conexao1 = conexao.AbreBanco()
-      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+      dr = conexao.RetornaDataReader(str_builder.ToString())
 
       Do While dr.Read()
         _vBCUFDest = dr(0)
@@ -158,10 +155,9 @@ Property vFCPST() As Decimal
         _pFCPST = dr(10)
         _vFCPST = dr(11)
       Loop
-      conexao.FechaBanco(conexao1)
+
       dr.Close()
     Catch ex As Exception
-      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO PEGAR AS INFORMAÇÕES DO ICMS INTERESTADUAL: " & ex.Message() & "---------" & ex.StackTrace()
     End Try
   End Sub

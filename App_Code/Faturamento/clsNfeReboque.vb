@@ -6,8 +6,6 @@ Public Class clsNfeReboque
 
   Private _id_nf, _seq As Integer
   Private _reboque_placa, _reboque_uf, _reboque_RNTC, _reboque_vagao, _reboque_balsa, _msg_erro As String
-  Private conexao1 As New SqlConnection
-
 
   Public Sub New()
 
@@ -106,9 +104,7 @@ Public Class clsNfeReboque
 
 
     Try
-      'dr = conexao.RetornaDataReader(str_builder.ToString())
-      conexao1 = conexao.AbreBanco()
-      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+      dr = conexao.RetornaDataReader(str_builder.ToString())
 
       Do While dr.Read()
         row = table.NewRow()
@@ -122,10 +118,9 @@ Public Class clsNfeReboque
 
         table.Rows.Add(row)
       Loop
-      conexao.FechaBanco(conexao1)
+
       dr.Close()
     Catch ex As Exception
-      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR OS REBOQUES DA NFE: " & ex.Message() & "---------------" & ex.StackTrace()
     End Try
 

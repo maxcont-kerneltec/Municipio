@@ -6,7 +6,7 @@ Public Class clsNFeItemGrupoExportacao
   Private _detExport As Integer
   Private _nDraw, _nRE, _chNFe, _msg_erro As String
   Private _qExport As Decimal
-  Private conexao1 As New SqlConnection
+
 
   Public Sub New()
 
@@ -84,9 +84,7 @@ Public Class clsNFeItemGrupoExportacao
     str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ") ")
 
     Try
-      'dr = conexao.RetornaDataReader(str_builder.ToString())
-      conexao1 = conexao.AbreBanco()
-      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+      dr = conexao.RetornaDataReader(str_builder.ToString())
 
       Do While dr.Read()
         row = table.NewRow()
@@ -99,10 +97,9 @@ Public Class clsNFeItemGrupoExportacao
 
         table.Rows.Add(row)
       Loop
-      conexao.FechaBanco(conexao1)
+
       dr.Close()
     Catch ex As Exception
-      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR O GRUPO EXPORTAÇÃO PARA O ITEM: " & ex.Message() & "-------" & ex.StackTrace()
     End Try
 

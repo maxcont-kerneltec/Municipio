@@ -7,8 +7,6 @@ Public Class clsNFeInformacoesPagamento
   Private _vPag, _vTroco As Decimal
   Private _msg_erro As String
 
-  Private conexao1 As New SqlConnection
-
   Public Sub New()
 
   End Sub
@@ -84,9 +82,7 @@ Public Class clsNFeInformacoesPagamento
     str_builder.Append("WHERE (A.id_nf = " & id_nf & ")")
 
     Try
-      'dr = conexao.RetornaDataReader(str_builder.ToString())
-      conexao1 = conexao.AbreBanco()
-      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+      dr = conexao.RetornaDataReader(str_builder.ToString())
 
       Do While dr.Read()
         row = table.NewRow()
@@ -104,11 +100,10 @@ Public Class clsNFeInformacoesPagamento
 
         table.Rows.Add(row)
       Loop
-      conexao.FechaBanco(conexao1)
+
       dr.Close()
 
     Catch ex As Exception
-      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO PEGAR AS INFORMAÇÕES DE PAGAMENTO DA NOTA FISCAL: " & ex.Message() & "---------" & ex.StackTrace()
     End Try
 

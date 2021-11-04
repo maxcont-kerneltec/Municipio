@@ -3758,7 +3758,6 @@ Public Class clsCriaXmlNFeVersao4
         writer.WriteStartElement("infIntermed")
         For Each drv As DataRowView In dv
           writer.WriteStartElement("CNPJ")
-          CNPJ = drv(0).
           writer.WriteString(ajuste.FormataCNPJ(drv(0), FormataCnpj.semCaracter))
           'writer.WriteString()
           writer.WriteEndElement()

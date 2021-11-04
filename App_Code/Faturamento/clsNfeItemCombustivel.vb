@@ -7,8 +7,6 @@ Public Class clsNfeItemCombustivel
   Private _pMixGN, _qTemp, _qBcProd, _vAliqProd, _vCIDE, _pGLP, _pGNn, _pGNi, _vPart As Decimal
   Private _UFCons, _descANP, _msg_erro As String
 
-  Private conexao1 As New SqlConnection
-
   Public Sub New()
 
   End Sub
@@ -166,9 +164,7 @@ Public Class clsNfeItemCombustivel
     str_builder.Append("WHERE (id_nf = " & id_nf & ") AND (nItem = " & nItem & ") ")
 
     Try
-      'dr = conexao.RetornaDataReader(str_builder.ToString())
-      conexao1 = conexao.AbreBanco()
-      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+      dr = conexao.RetornaDataReader(str_builder.ToString())
 
       If dr.HasRows Then
         retorno = True
@@ -190,10 +186,9 @@ Public Class clsNfeItemCombustivel
         Loop
 
       End If
-      conexao.FechaBanco(conexao1)
+
       dr.Close()
     Catch ex As Exception
-      conexao.FechaBanco(conexao1)
       _msg_erro = "ERRO AO LISTAR OS DADOS DO COMBUSTÍVEL: " & ex.Message() & "----------" & ex.StackTrace()
     End Try
 

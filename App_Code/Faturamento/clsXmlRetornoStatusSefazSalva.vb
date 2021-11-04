@@ -3,14 +3,11 @@ Imports System.Data.SqlClient
 
 Public Class clsXmlRetornoStatusSefazSalva
 
-  Private conexao1 As New SqlConnection
   Public Sub New()
 
   End Sub
 
   Private _xMotivo, _xSolucao As String
-  'Private asp_nNF, asp_dEmiAs, asp_nome_emit, asp_email_dest, asp_email_emp String
-  'Private asp_sig_chNFe, asp_nome_dest, asp_arq_xml, asp_canc_arq_xml, asp_corrige_XML, asp_tpEvento String
 
   Property xMotivo() As String
     Get
@@ -71,14 +68,12 @@ Public Class clsXmlRetornoStatusSefazSalva
     str_builder.Append(",'" & xCondUso & "','" & arq_xml & "','" & xJust & "'")
 
     Try
-      'dr = conexao.RetornaDataReader(str_builder.ToString())
-      conexao1 = conexao.AbreBanco()
-      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
-
+      dr = conexao.RetornaDataReader(str_builder.ToString())
+	  
       Do While dr.Read()
         id_nf = dr(0)
       Loop
-      conexao.FechaBanco(conexao1)
+	  
       dr.Close()
 	  
 	  If tpEvento = 110111 Then 'CANCELAMENTO... realiza os cancelamentos abaixo...
@@ -101,10 +96,8 @@ Public Class clsXmlRetornoStatusSefazSalva
     str_builder.Append(",'" & nNFFim & "','" & xJust & "','" & nProt & "','" & dhRecbto & "','" & caminho_xml & "'")
 
     Try
-      conexao1 = conexao.AbreBanco()
-      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
-      'dr = conexao.RetornaDataReader(str_builder.ToString())
-      conexao.FechaBanco(conexao1)
+      dr = conexao.RetornaDataReader(str_builder.toString())
+
     Catch ex As Exception
       _xMotivo = "ERRO AO SALVAR AS INFORMAÇÕES DA INUTILIZAÇÃO NO BANCO DE DADOS: " & ex.Message() & "--------" & ex.StackTrace()
     End Try
@@ -200,54 +193,17 @@ Public Class clsXmlRetornoStatusSefazSalva
     str_builder.Append(",'" & cStat & "','" & xMotivo & "'")
 
     Try
-      'dr = conexao.RetornaDataReader(str_builder.toString())
-      conexao1 = conexao.AbreBanco()
-      dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
+      dr = conexao.RetornaDataReader(str_builder.toString())
 
       Do While dr.Read()
         _xSolucao = dr(0)
       Loop
-      conexao.FechaBanco(conexao1)
+
       dr.Close()
     Catch ex As Exception
       _xMotivo = "ERRO AO SALVAR AS INFORMAÇÕES DO ERRO: " & ex.Message() & "-------" & ex.StackTrace()
     End Try
   End Sub
 
-  'Public Sub EmailEnvia(ByVal id_empresa As Integer, ByVal id_nf As Integer)
-  '  Dim str_builder As New StringBuilder
-  '  Dim dr As SqlDataReader
-  '  Dim conexao As New clsConexao
-
-  '  '0 = id_usuario
-  '  str_builder.Append("EXEC sp9_Pega_Uma_NFe_Email '" & id_empresa & "','" & id_nf & "','','E','0'")
-
-
-  '  Try
-  '    conexao1 = conexao.AbreBanco()
-  '    dr = conexao.RetornaDataReader_Conexao(str_builder.ToString(), conexao1)
-  '    'dr = conexao.RetornaDataReader(str_builder.ToString())
-
-  '    Do While dr.Read()
-  '      asp_nNF = mPegaEmail(0, 0)
-  '      asp_dEmi = mPegaEmail(1, 0)
-  '      asp_nome_emit = mPegaEmail(2, 0)
-  '      asp_email_dest = mPegaEmail(3, 0)
-  '      asp_email_emp = mPegaEmail(4, 0)
-  '      asp_sig_chNFe = mPegaEmail(5, 0)
-  '      asp_nome_dest = mPegaEmail(6, 0)
-  '      asp_arq_xml = "" & mPegaEmail(7, 0)
-  '      asp_canc_arq_xml = "" & mPegaEmail(8, 0)
-  '      asp_corrige_XML = "" & mPegaEmail(9, 0)
-  '      asp_tpEvento = "" & mPegaEmail(10, 0)
-  '    Loop
-
-  '    conexao.FechaBanco(conexao1)
-  '    dr.Close()
-  '  Catch ex As Exception
-  '    conexao.FechaBanco(conexao1)
-  '    MsgBox("ERRO AO LISTAR O EMITENTE DA NOTA:" & ex.Message() & "--------" & ex.StackTrace(), MsgBoxStyle.Critical, "Maxcont")
-  '  End Try
-  'End Sub
 
 End Class
