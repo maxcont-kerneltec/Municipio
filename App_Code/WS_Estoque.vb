@@ -872,47 +872,33 @@ Public Class WS_Estoque
 
         Dim nome_arquivo As String = ""
 
-        'CFE (Pega chave de acordo com conteúdo da string)
-        If id_empresa = "835" Then
-          If txt_XML.IndexOf("?xml") > 0 Then
-            Dim PosicLimpa2 As Integer = txt_XML.IndexOf("?>")
-            txt_XML = txt_XML.Substring(PosicLimpa2 + 2, txt_XML.Length - (PosicLimpa2 + 2))
-            'nome_arquivo = txt_XML.Substring(0, 20)
+        'Chegou com TAG XML do PDV, elimina
+        If txt_XML.IndexOf("?xml") > 0 Then
+          Dim PosicLimpa2 As Integer = txt_XML.IndexOf("?>")
+          txt_XML = txt_XML.Substring(PosicLimpa2 + 2, txt_XML.Length - (PosicLimpa2 + 2))
+          'nome_arquivo = txt_XML.Substring(0, 20)
+        End If
+
+        If txt_XML.Substring(0, 5) = "<CFe>" Then
+          Posic2 = txt_XML.IndexOf("Id=")
+          If Posic2 > 0 Then
+            nome_arquivo = "AD" & txt_XML.Substring(Posic2 + 7, 44)
           End If
-
-          If txt_XML.Substring(0, 5) = "<CFe>" Then
-            Posic2 = txt_XML.IndexOf("Id=")
-            If Posic2 > 0 Then
-              nome_arquivo = "AD" & txt_XML.Substring(Posic2 + 7, 44)
-            End If
-            'CFE CANCELAMENTO
-          ElseIf txt_XML.Substring(0, 9) = "<CFeCanc>" Then
-            Posic2 = txt_XML.IndexOf("Id=")
-            If Posic2 > 0 Then
-              nome_arquivo = "ADC" & txt_XML.Substring(Posic2 + 7, 44)
-            Else
-              nome_arquivo = data.Year & data.Month & data.Day & "_" & data.Hour & data.Minute & data.Second
-            End If
-          End If
-
-          'NÃO LOCALIZOU ARQUIVO VÁLIDO, GRAVA NOME DE ARQUIVO COM DATA E HORA
-          If nome_arquivo = "" Then
-            nome_arquivo = data.Year & data.Month & data.Day & "_" & data.Hour & data.Minute & data.Second
-          End If
-
-          'nome_arquivo = txt_XML.Substring(0, 5) & "|" & txt_XML.Substring(0, 9) & "|" & txt_XML.Substring(Posic2 + 11, 44)
-        Else
-
-          If txt_XML.Substring(0, 5) = "<CFe>" Then
-            nome_arquivo = "AD" & txt_XML.Substring(Posic + 14, 44)
-            'CFE CANCELAMENTO
-          ElseIf txt_XML.Substring(0, 9) = "<CFeCanc>" Then
-            nome_arquivo = "ADC" & txt_XML.Substring(Posic + 14, 44)
+          'CFE CANCELAMENTO
+        ElseIf txt_XML.Substring(0, 9) = "<CFeCanc>" Then
+          Posic2 = txt_XML.IndexOf("Id=")
+          If Posic2 > 0 Then
+            nome_arquivo = "ADC" & txt_XML.Substring(Posic2 + 7, 44)
           Else
-            'NÃO LOCALIZOU ARQUIVO VÁLIDO, GRAVA NOME DE ARQUIVO COM DATA E HORA
             nome_arquivo = data.Year & data.Month & data.Day & "_" & data.Hour & data.Minute & data.Second
           End If
         End If
+
+        'NÃO LOCALIZOU ARQUIVO VÁLIDO, GRAVA NOME DE ARQUIVO COM DATA E HORA
+        If nome_arquivo = "" Then
+          nome_arquivo = data.Year & data.Month & data.Day & "_" & data.Hour & data.Minute & data.Second
+        End If
+
 
         'Pasta onde serão armazendos os arquivos XMLs
         Dim path As String = Server.MapPath("../../Sat/Docs/" & CStr(id_empresa))
