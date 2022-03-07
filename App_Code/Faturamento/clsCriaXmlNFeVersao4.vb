@@ -734,45 +734,51 @@ Public Class clsCriaXmlNFeVersao4
 
       writer.WriteStartElement("retirada")
 
-      If retirada.tipo_pessoa = "J" Then
-        writer.WriteStartElement("CNPJ")
-        writer.WriteString(ajuste.FormataCNPJ(retirada.cnpj, FormataCnpj.semCaracter))
-        writer.WriteEndElement()
+      If retirada.cnpj <> "" Then
+        If retirada.tipo_pessoa = "J" Then
+          writer.WriteStartElement("CNPJ")
+          writer.WriteString(ajuste.FormataCNPJ(retirada.cnpj, FormataCnpj.semCaracter))
+          writer.WriteEndElement()
+        Else
+          writer.WriteStartElement("CPF")
+          writer.WriteString(ajuste.FormataCPF(retirada.cnpj, FormataCpf.semCaracter))
+          writer.WriteEndElement()
+        End If
       Else
-        writer.WriteStartElement("CPF")
-        writer.WriteString(ajuste.FormataCPF(retirada.cnpj, FormataCpf.semCaracter))
+        writer.WriteStartElement("CNPJ")
+        writer.WriteString("EXTERIOR")
         writer.WriteEndElement()
       End If
 
       writer.WriteStartElement("xLgr")
-      writer.WriteString(RTrim(retirada.xLgr))
-      writer.WriteEndElement()
-
-      writer.WriteStartElement("nro")
-      writer.WriteString(RTrim(retirada.nro))
-      writer.WriteEndElement()
-
-      If retirada.xCpl <> "" Then
-        writer.WriteStartElement("xCpl")
-        writer.WriteString(retirada.xCpl)
+        writer.WriteString(RTrim(retirada.xLgr))
         writer.WriteEndElement()
-      End If
 
-      writer.WriteStartElement("xBairro")
-      writer.WriteString(retirada.xBairro)
-      writer.WriteEndElement()
+        writer.WriteStartElement("nro")
+        writer.WriteString(RTrim(retirada.nro))
+        writer.WriteEndElement()
 
-      writer.WriteStartElement("cMun")
-      writer.WriteString(retirada.cMun)
-      writer.WriteEndElement()
+        If retirada.xCpl <> "" Then
+          writer.WriteStartElement("xCpl")
+          writer.WriteString(retirada.xCpl)
+          writer.WriteEndElement()
+        End If
 
-      writer.WriteStartElement("xMun")
-      writer.WriteString(retirada.xMun)
-      writer.WriteEndElement()
+        writer.WriteStartElement("xBairro")
+        writer.WriteString(retirada.xBairro)
+        writer.WriteEndElement()
 
-      writer.WriteStartElement("UF")
-      writer.WriteString(retirada.UF)
-      writer.WriteEndElement()
+        writer.WriteStartElement("cMun")
+        writer.WriteString(retirada.cMun)
+        writer.WriteEndElement()
+
+        writer.WriteStartElement("xMun")
+        writer.WriteString(retirada.xMun)
+        writer.WriteEndElement()
+
+        writer.WriteStartElement("UF")
+        writer.WriteString(retirada.UF)
+        writer.WriteEndElement()
 
       If retirada.CEP <> "" Then
         writer.WriteStartElement("CEP")
@@ -780,8 +786,10 @@ Public Class clsCriaXmlNFeVersao4
         writer.WriteEndElement()
       End If
 
+
+
       writer.WriteEndElement() 'FIM retirada
-    End If
+      End If
   End Sub
 
   Private Sub IdentificacaoLocalEntrega(ByVal writer As XmlTextWriter)
@@ -793,13 +801,19 @@ Public Class clsCriaXmlNFeVersao4
 
       writer.WriteStartElement("entrega")
 
-      If entrega.tipo_pessoa = "J" Then
-        writer.WriteStartElement("CNPJ")
-        writer.WriteString(ajuste.FormataCNPJ(entrega.cnpj, FormataCnpj.semCaracter))
-        writer.WriteEndElement()
+      If entrega.cnpj <> "" Then
+        If entrega.tipo_pessoa = "J" Then
+          writer.WriteStartElement("CNPJ")
+          writer.WriteString(ajuste.FormataCNPJ(entrega.cnpj, FormataCnpj.semCaracter))
+          writer.WriteEndElement()
+        Else
+          writer.WriteStartElement("CPF")
+          writer.WriteString(ajuste.FormataCPF(entrega.cnpj, FormataCpf.semCaracter))
+          writer.WriteEndElement()
+        End If
       Else
-        writer.WriteStartElement("CPF")
-        writer.WriteString(ajuste.FormataCPF(entrega.cnpj, FormataCpf.semCaracter))
+        writer.WriteStartElement("CNPJ")
+        writer.WriteString("EXTERIOR")
         writer.WriteEndElement()
       End If
 

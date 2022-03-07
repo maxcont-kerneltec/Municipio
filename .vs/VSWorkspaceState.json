@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\App_Code",
+    "\\App_Code\\Faturamento",
     "\\WS_Maxcont"
   ],
-  "SelectedNode": "\\App_Code\\WS_Estoque.vb",
   "PreviewInSolutionExplorer": false
 }
