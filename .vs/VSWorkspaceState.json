@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\App_Code",
-    "\\App_Code\\Faturamento",
+    "\\Estoque",
     "\\WS_Maxcont"
   ],
+  "SelectedNode": "\\WS_Maxcont\\WS_Maxcont_Local.asmx",
   "PreviewInSolutionExplorer": false
 }

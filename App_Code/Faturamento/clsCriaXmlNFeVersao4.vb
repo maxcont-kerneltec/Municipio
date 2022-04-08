@@ -853,6 +853,19 @@ Public Class clsCriaXmlNFeVersao4
         writer.WriteEndElement()
       End If
 
+      If Me.id_nf = 1858636 Then
+        writer.WriteStartElement("cPais")
+        writer.WriteString("1589")
+        writer.WriteEndElement()
+      End If
+
+      If Me.id_nf = 1858636 Then
+        writer.WriteStartElement("cPais")
+        writer.WriteString("CHILE")
+        writer.WriteEndElement()
+      End If
+
+
       writer.WriteEndElement() 'FIM entrega
     End If
   End Sub
@@ -1819,7 +1832,8 @@ Public Class clsCriaXmlNFeVersao4
 
         If ipi.IPI_CNPJProd <> "0" And ipi.IPI_CNPJProd <> "" Then
           writer.WriteStartElement("CNPJProd")
-          writer.WriteString(ipi.IPI_CNPJProd)
+          writer.WriteString(Right("00000000000000" & ipi.IPI_CNPJProd, 14))
+          'writer.WriteString(ipi.IPI_CNPJProd)
           writer.WriteEndElement()
         End If
 
