@@ -1,0 +1,104 @@
+﻿body
+{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+  font-weight: normal;
+}
+.lab_azul
+{
+  font-size: small;
+  color: #0066CC;
+}
+.button_tb
+{
+  padding: 0px;
+  background-color: #000080;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  height: 21px;
+}
+.input_texto
+{
+  background-color: #F4F9FF;
+  border: 1px solid #000080;
+}
+
+.input_texto_grande
+{
+  background-color: #F4F9FF;
+  border: 1px solid #000080;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: medium;
+  text-transform: uppercase;
+}
+
+.input_texto_grande:focus
+{
+  border: 1px solid #0000FF;
+  padding: 3px;
+  background-color: #FFFFCC;
+  border: 1px solid #000080;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  text-transform: uppercase;
+}
+
+.lbl_texto
+{
+  border-style: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  text-align: left;
+}
+
+.input_texto:focus
+{
+  border: 1px solid #0000FF;
+  background-color: #FFFFCC;
+}
+.button_verde
+{
+  background-color: #008000;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 11px;
+  height: 21px;
+}
+
+.button_claro
+{
+  border: 1px solid #000000;
+  background-color: #0066FF;
+  font-size: small;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  height: 21px;  
+}
+.botao_cinza
+{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  background-color: #666666;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.aviso_vermelho
+{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: #FF0000;
+  text-align: center;
+}
+.titulo_relatorio
+{
+  background-color: #0033CC;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #FFFFFF;
+  text-align: center;
+}

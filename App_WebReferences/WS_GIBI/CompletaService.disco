@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://201.23.101.93:8081/completaservice/CompletaService.asmx?wsdl" docRef="http://201.23.101.93:8081/completaservice/CompletaService.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://201.23.101.93:8081/completaservice/CompletaService.asmx" xmlns:q1="http://completalog.com/webservice" binding="q1:CompletaServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://201.23.101.93:8081/completaservice/CompletaService.asmx" xmlns:q2="http://completalog.com/webservice" binding="q2:CompletaServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

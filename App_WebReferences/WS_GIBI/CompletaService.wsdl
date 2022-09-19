@@ -1,0 +1,1903 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://completalog.com/webservice" xmlns:s1="http://completalog.com/webservice/AbstractTypes" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://completalog.com/webservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web service utilizado pelos clientes da Completa Logística</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://completalog.com/webservice">
+      <s:element name="Despacho">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoTransportadora" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Documentosaida" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DespachoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DespachoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmaDespacho">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Codigo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmaDespachoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConfirmaDespachoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PedidosStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PedidosStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PedidosStatusResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecebimentoStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecebimentoStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecebimentoStatusResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PedidosStatusCondicao">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Condicao" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PedidosStatusCondicaoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PedidosStatusCondicaoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EstoqueProdutoReserva">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Condicao" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EstoqueProdutoReservaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EstoqueProdutoReservaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaProduto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Condicao" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaProdutoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaProdutoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaRecebimento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Condicao" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaRecebimentoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaRecebimentoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaRangeCorreios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Condicao" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaRangeCorreiosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaRangeCorreiosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LimpaConsumoStatusPedidos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LimpaConsumoStatusPedidosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LimpaConsumoStatusPedidosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LimpaConsumoStatusRecebimento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LimpaConsumoStatusRecebimentoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LimpaConsumoStatusRecebimentoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CadastraProduto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prod" type="tns:Produto" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Produto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoDepositante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoProduto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sDescricaoProduto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iCodigoGrupo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoNCM" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iAliquotaReducaoICMS" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iAliquotaSeguroCusto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sEspecieSugestaoArmazenagem" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iEstoqueMaximo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iEstoqueMinimo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sExigirCodigoRelacionado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sExpedirMesmoTipoUC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iFatorBaseIcmsST" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sFracionaEndereco" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sIndiceFragilidade" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformaDadoLogistico" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformaIDFracionamentoPicking" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformarPeso" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformarTipoUC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformarVolume" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInsercaoMultiplaSerie" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sKitProduto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sLoteLogisticoDias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sPermitirAlocacaoRessup" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPorcentagemFracionamento" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPrecoMovimento" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sPrioridadeBaixa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sPriorizarMovarmParcial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sRegraMovimentacao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sScrapProduto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iSequenciaInteira" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sSistemaModulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sSugAgruparDadoLogisticoEnd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sSugAgruparDadoLogisticoUA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoRecurso" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoUaPadrao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoUCInteiro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sUtilizarCrossDocking" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sUtilizarEmbalagemExpedConf" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sUtilizarRegraArmExclusivo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sUtilizarUnitizacao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sValidarClasse" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sUsuario" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iAtivo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoProduto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sModeloProduto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPesoBruto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional5" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sClassificacaoFiscal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sObservacaoProduto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoUCPadrao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sDescricaoGrupo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sDescricaoTipoUC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoUC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPrecoCusto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoProdutoRelacionado" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CadastraProdutoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CadastraProdutoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CadastraClienteEmpresa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cli" type="tns:Cliente" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Cliente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoDepositante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sDescricaoEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sEnderecoEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sBairroEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCEPEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sMunicipioEmpresa" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iNumeroEmpresa" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCGCCPFEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sFoneEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sUfEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sEmailEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sPaisEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sComplementoEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sObservacaoEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoPessoaEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sDescricaoEmpresa2" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CadastraClienteEmpresaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CadastraClienteEmpresaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CadastraPrevisaoEntrada">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="previsao" type="tns:PrevisaoEntrada" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PrevisaoEntrada">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoDepositante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sPrevisaoEntrada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sSerieDocumento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoTransportadora" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dDataEmissao" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="dDataMovimento" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoMatriz" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sUsuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sUsuarioGeracao" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dDataGeracao" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoDocumento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iEstadoDocumento" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="iCFOP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iNaturezaOperacao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sEspecieDocumento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iTipoFrete" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iIdEnderecoEmpresa" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iTipoConferencia" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iCodigoEstabelecimento" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CadastraPrevisaoEntradaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CadastraPrevisaoEntradaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CadastraPrevisaoEntradaItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="previsaoitem" type="tns:ArrayOfPrevisaoEntradaItem" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPrevisaoEntradaItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PrevisaoEntradaItem" nillable="true" type="tns:PrevisaoEntradaItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PrevisaoEntradaItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoDepositante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sPrevisaoEntrada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sSerieDocumento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoMatriz" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iCodigoProduto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iQuantidadeDocumento" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iQuantidadeEntrada" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iQuantidadePrevista" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorUnitario" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sNaturezaOperacao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoUc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sUsuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sClasseProduto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoDocumento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorServico" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorUnitarioFiscal" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorAcrescimo" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorDesconto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sFatorBaseIcms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sFatorBaseIcmsSt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sFatorBaseIpi" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iQuantidadeOrigem" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iQuantidadeInicial" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sFatorTipoUC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iCodigoEstabelecimento" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAliquotaIpiReducao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAliquotaIcmsSub" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAliquotaIpi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAliquotaIcmsReducao" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorBaseIcmsSt" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAliquotaIcms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAliquotaMva" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorIcmsSt" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sComprimento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sPesoLiquido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sLargura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sPesoBruto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAltura" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iSequenciaPrevisaoEntrada" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional3" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CadastraPrevisaoEntradaItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CadastraPrevisaoEntradaItemResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CadastraPrevisaoSaida">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="previsao" type="tns:PrevisaoSaida" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PrevisaoSaida">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sPrevisaoSaida" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sNaturezaOperacao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCfop" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dDataEmissao" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="dDataMovimento" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoMatriz" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoDepositante" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorTotalDocumento" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorTotalProduto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sUsuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sUsuarioGeracao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sEspecieDocumento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoDocumento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iTipoConferencia" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iIdEnderecoEmpresa" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iEstadoDocumento" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iCodigoEstabelecimento" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iTipoFrete" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sSerieDocumento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPesoBruto" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPesoLiquido" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorDescontoItem" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorAcrescimoItem" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iVolumeCubico" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorServico" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorAcrescimo" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorDesconto" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorBaseIcms" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorBaseIpi" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorBaseIcmsSub" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorSeguro" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorIcms" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorIcmsSub" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorFrete" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorIpi" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInibirFracionamento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iFatParcialOrdemSeparacao" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoTransportadora" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sNumeroDocumento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sNfeChaveAcesso" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sDescricaoTransportadora" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sObservacaoDocumento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sConhecimentoTransporte" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional3" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dDataGeracao" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="bNotaFiscalPDF" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="bNotaFiscalXML" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CadastraPrevisaoSaidaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CadastraPrevisaoSaidaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CadastraNotaFiscalVenda">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CodigoEstabelecimento" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SerieDocumento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PrevisaoSaida" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NotaFiscalPDF" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="NotaFiscalXML" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CadastraNotaFiscalVendaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CadastraNotaFiscalVendaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CadastraPrevisaoSaidaItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="previsaoitem" type="tns:ArrayOfPrevisaoSaidaItem" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPrevisaoSaidaItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PrevisaoSaidaItem" nillable="true" type="tns:PrevisaoSaidaItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PrevisaoSaidaItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoDepositante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sPrevisaoSaida" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sSerieDocumento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoMatriz" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sCodigoProduto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iQuantidadeDocumento" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iQuantidadeSaida" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iQuantidadePrevista" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorUnitario" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sNaturezaOperacao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoUc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sUsuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sClasseProduto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sTipoDocumento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorServico" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorUnitarioFiscal" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorAcrescimo" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorDesconto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sFatorBaseIcms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sFatorBaseIcmsSt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sFatorBaseIpi" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iQuantidadeOrigem" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sFatorTipoUC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iCodigoEstabelecimento" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAliquotaIpiReducao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAliquotaIcmsSub" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAliquotaIpi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAliquotaIcmsReducao" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorBaseIcmsSt" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAliquotaIcms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAliquotaMva" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValorIcmsSt" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sComprimento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPesoLiquido" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sLargura" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPesoBruto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="sAltura" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iSequenciaPrevisaoSaida" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sInformacaoAdicional3" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iQuantidadeInicial" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sNumeroDocumento" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CadastraPrevisaoSaidaItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CadastraPrevisaoSaidaItemResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcluirPrevisaoSaida">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Previsao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Serie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcluirPrevisaoSaidaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExcluirPrevisaoSaidaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcluirPrevisaoEntrada">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Previsao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Serie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoDepositante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodigoFornecedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcluirPrevisaoEntradaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExcluirPrevisaoEntradaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataSet" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:element ref="s:schema" />
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+    <s:schema targetNamespace="http://completalog.com/webservice/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DespachoSoapIn">
+    <wsdl:part name="parameters" element="tns:Despacho" />
+  </wsdl:message>
+  <wsdl:message name="DespachoSoapOut">
+    <wsdl:part name="parameters" element="tns:DespachoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmaDespachoSoapIn">
+    <wsdl:part name="parameters" element="tns:ConfirmaDespacho" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmaDespachoSoapOut">
+    <wsdl:part name="parameters" element="tns:ConfirmaDespachoResponse" />
+  </wsdl:message>
+  <wsdl:message name="PedidosStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:PedidosStatus" />
+  </wsdl:message>
+  <wsdl:message name="PedidosStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:PedidosStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecebimentoStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:RecebimentoStatus" />
+  </wsdl:message>
+  <wsdl:message name="RecebimentoStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:RecebimentoStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="PedidosStatusCondicaoSoapIn">
+    <wsdl:part name="parameters" element="tns:PedidosStatusCondicao" />
+  </wsdl:message>
+  <wsdl:message name="PedidosStatusCondicaoSoapOut">
+    <wsdl:part name="parameters" element="tns:PedidosStatusCondicaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EstoqueProdutoReservaSoapIn">
+    <wsdl:part name="parameters" element="tns:EstoqueProdutoReserva" />
+  </wsdl:message>
+  <wsdl:message name="EstoqueProdutoReservaSoapOut">
+    <wsdl:part name="parameters" element="tns:EstoqueProdutoReservaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProdutoSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaProduto" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProdutoSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaProdutoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRecebimentoSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaRecebimento" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRecebimentoSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaRecebimentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRangeCorreiosSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaRangeCorreios" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRangeCorreiosSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaRangeCorreiosResponse" />
+  </wsdl:message>
+  <wsdl:message name="LimpaConsumoStatusPedidosSoapIn">
+    <wsdl:part name="parameters" element="tns:LimpaConsumoStatusPedidos" />
+  </wsdl:message>
+  <wsdl:message name="LimpaConsumoStatusPedidosSoapOut">
+    <wsdl:part name="parameters" element="tns:LimpaConsumoStatusPedidosResponse" />
+  </wsdl:message>
+  <wsdl:message name="LimpaConsumoStatusRecebimentoSoapIn">
+    <wsdl:part name="parameters" element="tns:LimpaConsumoStatusRecebimento" />
+  </wsdl:message>
+  <wsdl:message name="LimpaConsumoStatusRecebimentoSoapOut">
+    <wsdl:part name="parameters" element="tns:LimpaConsumoStatusRecebimentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CadastraProdutoSoapIn">
+    <wsdl:part name="parameters" element="tns:CadastraProduto" />
+  </wsdl:message>
+  <wsdl:message name="CadastraProdutoSoapOut">
+    <wsdl:part name="parameters" element="tns:CadastraProdutoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CadastraClienteEmpresaSoapIn">
+    <wsdl:part name="parameters" element="tns:CadastraClienteEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="CadastraClienteEmpresaSoapOut">
+    <wsdl:part name="parameters" element="tns:CadastraClienteEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="CadastraPrevisaoEntradaSoapIn">
+    <wsdl:part name="parameters" element="tns:CadastraPrevisaoEntrada" />
+  </wsdl:message>
+  <wsdl:message name="CadastraPrevisaoEntradaSoapOut">
+    <wsdl:part name="parameters" element="tns:CadastraPrevisaoEntradaResponse" />
+  </wsdl:message>
+  <wsdl:message name="CadastraPrevisaoEntradaItemSoapIn">
+    <wsdl:part name="parameters" element="tns:CadastraPrevisaoEntradaItem" />
+  </wsdl:message>
+  <wsdl:message name="CadastraPrevisaoEntradaItemSoapOut">
+    <wsdl:part name="parameters" element="tns:CadastraPrevisaoEntradaItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="CadastraPrevisaoSaidaSoapIn">
+    <wsdl:part name="parameters" element="tns:CadastraPrevisaoSaida" />
+  </wsdl:message>
+  <wsdl:message name="CadastraPrevisaoSaidaSoapOut">
+    <wsdl:part name="parameters" element="tns:CadastraPrevisaoSaidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="CadastraNotaFiscalVendaSoapIn">
+    <wsdl:part name="parameters" element="tns:CadastraNotaFiscalVenda" />
+  </wsdl:message>
+  <wsdl:message name="CadastraNotaFiscalVendaSoapOut">
+    <wsdl:part name="parameters" element="tns:CadastraNotaFiscalVendaResponse" />
+  </wsdl:message>
+  <wsdl:message name="CadastraPrevisaoSaidaItemSoapIn">
+    <wsdl:part name="parameters" element="tns:CadastraPrevisaoSaidaItem" />
+  </wsdl:message>
+  <wsdl:message name="CadastraPrevisaoSaidaItemSoapOut">
+    <wsdl:part name="parameters" element="tns:CadastraPrevisaoSaidaItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPrevisaoSaidaSoapIn">
+    <wsdl:part name="parameters" element="tns:ExcluirPrevisaoSaida" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPrevisaoSaidaSoapOut">
+    <wsdl:part name="parameters" element="tns:ExcluirPrevisaoSaidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPrevisaoEntradaSoapIn">
+    <wsdl:part name="parameters" element="tns:ExcluirPrevisaoEntrada" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPrevisaoEntradaSoapOut">
+    <wsdl:part name="parameters" element="tns:ExcluirPrevisaoEntradaResponse" />
+  </wsdl:message>
+  <wsdl:message name="DespachoHttpGetIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="CodigoTransportadora" type="s:string" />
+    <wsdl:part name="Documentosaida" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DespachoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmaDespachoHttpGetIn">
+    <wsdl:part name="Codigo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmaDespachoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="PedidosStatusHttpGetIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PedidosStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="RecebimentoStatusHttpGetIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RecebimentoStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="PedidosStatusCondicaoHttpGetIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+    <wsdl:part name="Condicao" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PedidosStatusCondicaoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="EstoqueProdutoReservaHttpGetIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+    <wsdl:part name="Condicao" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EstoqueProdutoReservaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProdutoHttpGetIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+    <wsdl:part name="Condicao" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProdutoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRecebimentoHttpGetIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+    <wsdl:part name="Condicao" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRecebimentoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRangeCorreiosHttpGetIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+    <wsdl:part name="Condicao" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRangeCorreiosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="LimpaConsumoStatusPedidosHttpGetIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LimpaConsumoStatusPedidosHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LimpaConsumoStatusRecebimentoHttpGetIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LimpaConsumoStatusRecebimentoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CadastraNotaFiscalVendaHttpGetIn">
+    <wsdl:part name="CodigoEstabelecimento" type="s:string" />
+    <wsdl:part name="SerieDocumento" type="s:string" />
+    <wsdl:part name="PrevisaoSaida" type="s:string" />
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="NotaFiscalPDF" type="s1:StringArray" />
+    <wsdl:part name="NotaFiscalXML" type="s1:StringArray" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CadastraNotaFiscalVendaHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPrevisaoSaidaHttpGetIn">
+    <wsdl:part name="Previsao" type="s:string" />
+    <wsdl:part name="Serie" type="s:string" />
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="CodigoCliente" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPrevisaoSaidaHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPrevisaoEntradaHttpGetIn">
+    <wsdl:part name="Previsao" type="s:string" />
+    <wsdl:part name="Serie" type="s:string" />
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="CodigoFornecedor" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPrevisaoEntradaHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DespachoHttpPostIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="CodigoTransportadora" type="s:string" />
+    <wsdl:part name="Documentosaida" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DespachoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmaDespachoHttpPostIn">
+    <wsdl:part name="Codigo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmaDespachoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="PedidosStatusHttpPostIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PedidosStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="RecebimentoStatusHttpPostIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RecebimentoStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="PedidosStatusCondicaoHttpPostIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+    <wsdl:part name="Condicao" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PedidosStatusCondicaoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="EstoqueProdutoReservaHttpPostIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+    <wsdl:part name="Condicao" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EstoqueProdutoReservaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProdutoHttpPostIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+    <wsdl:part name="Condicao" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProdutoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRecebimentoHttpPostIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+    <wsdl:part name="Condicao" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRecebimentoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRangeCorreiosHttpPostIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+    <wsdl:part name="Condicao" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRangeCorreiosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="LimpaConsumoStatusPedidosHttpPostIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LimpaConsumoStatusPedidosHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LimpaConsumoStatusRecebimentoHttpPostIn">
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LimpaConsumoStatusRecebimentoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CadastraNotaFiscalVendaHttpPostIn">
+    <wsdl:part name="CodigoEstabelecimento" type="s:string" />
+    <wsdl:part name="SerieDocumento" type="s:string" />
+    <wsdl:part name="PrevisaoSaida" type="s:string" />
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="NotaFiscalPDF" type="s1:StringArray" />
+    <wsdl:part name="NotaFiscalXML" type="s1:StringArray" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CadastraNotaFiscalVendaHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPrevisaoSaidaHttpPostIn">
+    <wsdl:part name="Previsao" type="s:string" />
+    <wsdl:part name="Serie" type="s:string" />
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="CodigoCliente" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPrevisaoSaidaHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPrevisaoEntradaHttpPostIn">
+    <wsdl:part name="Previsao" type="s:string" />
+    <wsdl:part name="Serie" type="s:string" />
+    <wsdl:part name="CodigoDepositante" type="s:string" />
+    <wsdl:part name="CodigoFornecedor" type="s:string" />
+    <wsdl:part name="Chave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirPrevisaoEntradaHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="CompletaServiceSoap">
+    <wsdl:operation name="Despacho">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar pedidos despachados para a transportadora.</wsdl:documentation>
+      <wsdl:input message="tns:DespachoSoapIn" />
+      <wsdl:output message="tns:DespachoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaDespacho">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para confirmar o recebimento do status de despachado da transportadora.</wsdl:documentation>
+      <wsdl:input message="tns:ConfirmaDespachoSoapIn" />
+      <wsdl:output message="tns:ConfirmaDespachoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar o status dos pedidos em processo na Completa.</wsdl:documentation>
+      <wsdl:input message="tns:PedidosStatusSoapIn" />
+      <wsdl:output message="tns:PedidosStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecebimentoStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar os itens da nota fiscal recebidos na Completa.</wsdl:documentation>
+      <wsdl:input message="tns:RecebimentoStatusSoapIn" />
+      <wsdl:output message="tns:RecebimentoStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatusCondicao">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar o status dos pedidos em processo na Completa com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:PedidosStatusCondicaoSoapIn" />
+      <wsdl:output message="tns:PedidosStatusCondicaoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EstoqueProdutoReserva">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar o estoque na Completa com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:EstoqueProdutoReservaSoapIn" />
+      <wsdl:output message="tns:EstoqueProdutoReservaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaProduto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar cadastro de produto na Completa com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaProdutoSoapIn" />
+      <wsdl:output message="tns:ConsultaProdutoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRecebimento">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar a nota de recebimento na Completa com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaRecebimentoSoapIn" />
+      <wsdl:output message="tns:ConsultaRecebimentoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRangeCorreios">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar o range do correios utilizado com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaRangeCorreiosSoapIn" />
+      <wsdl:output message="tns:ConsultaRangeCorreiosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusPedidos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para excluir consumo de status de pedidos.</wsdl:documentation>
+      <wsdl:input message="tns:LimpaConsumoStatusPedidosSoapIn" />
+      <wsdl:output message="tns:LimpaConsumoStatusPedidosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusRecebimento">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para excluir consumo de status de recebimento.</wsdl:documentation>
+      <wsdl:input message="tns:LimpaConsumoStatusRecebimentoSoapIn" />
+      <wsdl:output message="tns:LimpaConsumoStatusRecebimentoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastraProduto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para cadastrar produto.</wsdl:documentation>
+      <wsdl:input message="tns:CadastraProdutoSoapIn" />
+      <wsdl:output message="tns:CadastraProdutoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastraClienteEmpresa">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para cadastrar empresa / cliente *antes de efetuar o cadastro do pedido de compra ou pedido de venda deve ser cadastrado a transportadora, cliente e o fornecedor.</wsdl:documentation>
+      <wsdl:input message="tns:CadastraClienteEmpresaSoapIn" />
+      <wsdl:output message="tns:CadastraClienteEmpresaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastraPrevisaoEntrada">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para cadastrar compra.</wsdl:documentation>
+      <wsdl:input message="tns:CadastraPrevisaoEntradaSoapIn" />
+      <wsdl:output message="tns:CadastraPrevisaoEntradaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastraPrevisaoEntradaItem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para cadastrar item de compra.</wsdl:documentation>
+      <wsdl:input message="tns:CadastraPrevisaoEntradaItemSoapIn" />
+      <wsdl:output message="tns:CadastraPrevisaoEntradaItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastraPrevisaoSaida">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para cadastrar venda.</wsdl:documentation>
+      <wsdl:input message="tns:CadastraPrevisaoSaidaSoapIn" />
+      <wsdl:output message="tns:CadastraPrevisaoSaidaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastraNotaFiscalVenda">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para envirar nota fiscal de venda.</wsdl:documentation>
+      <wsdl:input message="tns:CadastraNotaFiscalVendaSoapIn" />
+      <wsdl:output message="tns:CadastraNotaFiscalVendaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastraPrevisaoSaidaItem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para cadastrar item de venda.</wsdl:documentation>
+      <wsdl:input message="tns:CadastraPrevisaoSaidaItemSoapIn" />
+      <wsdl:output message="tns:CadastraPrevisaoSaidaItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoSaida">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para excluir venda.</wsdl:documentation>
+      <wsdl:input message="tns:ExcluirPrevisaoSaidaSoapIn" />
+      <wsdl:output message="tns:ExcluirPrevisaoSaidaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoEntrada">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para excluir compra.</wsdl:documentation>
+      <wsdl:input message="tns:ExcluirPrevisaoEntradaSoapIn" />
+      <wsdl:output message="tns:ExcluirPrevisaoEntradaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CompletaServiceHttpGet">
+    <wsdl:operation name="Despacho">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar pedidos despachados para a transportadora.</wsdl:documentation>
+      <wsdl:input message="tns:DespachoHttpGetIn" />
+      <wsdl:output message="tns:DespachoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaDespacho">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para confirmar o recebimento do status de despachado da transportadora.</wsdl:documentation>
+      <wsdl:input message="tns:ConfirmaDespachoHttpGetIn" />
+      <wsdl:output message="tns:ConfirmaDespachoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar o status dos pedidos em processo na Completa.</wsdl:documentation>
+      <wsdl:input message="tns:PedidosStatusHttpGetIn" />
+      <wsdl:output message="tns:PedidosStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecebimentoStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar os itens da nota fiscal recebidos na Completa.</wsdl:documentation>
+      <wsdl:input message="tns:RecebimentoStatusHttpGetIn" />
+      <wsdl:output message="tns:RecebimentoStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatusCondicao">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar o status dos pedidos em processo na Completa com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:PedidosStatusCondicaoHttpGetIn" />
+      <wsdl:output message="tns:PedidosStatusCondicaoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EstoqueProdutoReserva">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar o estoque na Completa com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:EstoqueProdutoReservaHttpGetIn" />
+      <wsdl:output message="tns:EstoqueProdutoReservaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaProduto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar cadastro de produto na Completa com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaProdutoHttpGetIn" />
+      <wsdl:output message="tns:ConsultaProdutoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRecebimento">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar a nota de recebimento na Completa com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaRecebimentoHttpGetIn" />
+      <wsdl:output message="tns:ConsultaRecebimentoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRangeCorreios">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar o range do correios utilizado com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaRangeCorreiosHttpGetIn" />
+      <wsdl:output message="tns:ConsultaRangeCorreiosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusPedidos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para excluir consumo de status de pedidos.</wsdl:documentation>
+      <wsdl:input message="tns:LimpaConsumoStatusPedidosHttpGetIn" />
+      <wsdl:output message="tns:LimpaConsumoStatusPedidosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusRecebimento">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para excluir consumo de status de recebimento.</wsdl:documentation>
+      <wsdl:input message="tns:LimpaConsumoStatusRecebimentoHttpGetIn" />
+      <wsdl:output message="tns:LimpaConsumoStatusRecebimentoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastraNotaFiscalVenda">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para envirar nota fiscal de venda.</wsdl:documentation>
+      <wsdl:input message="tns:CadastraNotaFiscalVendaHttpGetIn" />
+      <wsdl:output message="tns:CadastraNotaFiscalVendaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoSaida">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para excluir venda.</wsdl:documentation>
+      <wsdl:input message="tns:ExcluirPrevisaoSaidaHttpGetIn" />
+      <wsdl:output message="tns:ExcluirPrevisaoSaidaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoEntrada">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para excluir compra.</wsdl:documentation>
+      <wsdl:input message="tns:ExcluirPrevisaoEntradaHttpGetIn" />
+      <wsdl:output message="tns:ExcluirPrevisaoEntradaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CompletaServiceHttpPost">
+    <wsdl:operation name="Despacho">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar pedidos despachados para a transportadora.</wsdl:documentation>
+      <wsdl:input message="tns:DespachoHttpPostIn" />
+      <wsdl:output message="tns:DespachoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaDespacho">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para confirmar o recebimento do status de despachado da transportadora.</wsdl:documentation>
+      <wsdl:input message="tns:ConfirmaDespachoHttpPostIn" />
+      <wsdl:output message="tns:ConfirmaDespachoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar o status dos pedidos em processo na Completa.</wsdl:documentation>
+      <wsdl:input message="tns:PedidosStatusHttpPostIn" />
+      <wsdl:output message="tns:PedidosStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecebimentoStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar os itens da nota fiscal recebidos na Completa.</wsdl:documentation>
+      <wsdl:input message="tns:RecebimentoStatusHttpPostIn" />
+      <wsdl:output message="tns:RecebimentoStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatusCondicao">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar o status dos pedidos em processo na Completa com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:PedidosStatusCondicaoHttpPostIn" />
+      <wsdl:output message="tns:PedidosStatusCondicaoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EstoqueProdutoReserva">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar o estoque na Completa com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:EstoqueProdutoReservaHttpPostIn" />
+      <wsdl:output message="tns:EstoqueProdutoReservaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaProduto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar cadastro de produto na Completa com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaProdutoHttpPostIn" />
+      <wsdl:output message="tns:ConsultaProdutoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRecebimento">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar a nota de recebimento na Completa com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaRecebimentoHttpPostIn" />
+      <wsdl:output message="tns:ConsultaRecebimentoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRangeCorreios">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para retornar o range do correios utilizado com Condicao no SQL.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaRangeCorreiosHttpPostIn" />
+      <wsdl:output message="tns:ConsultaRangeCorreiosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusPedidos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para excluir consumo de status de pedidos.</wsdl:documentation>
+      <wsdl:input message="tns:LimpaConsumoStatusPedidosHttpPostIn" />
+      <wsdl:output message="tns:LimpaConsumoStatusPedidosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusRecebimento">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para excluir consumo de status de recebimento.</wsdl:documentation>
+      <wsdl:input message="tns:LimpaConsumoStatusRecebimentoHttpPostIn" />
+      <wsdl:output message="tns:LimpaConsumoStatusRecebimentoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastraNotaFiscalVenda">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para envirar nota fiscal de venda.</wsdl:documentation>
+      <wsdl:input message="tns:CadastraNotaFiscalVendaHttpPostIn" />
+      <wsdl:output message="tns:CadastraNotaFiscalVendaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoSaida">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para excluir venda.</wsdl:documentation>
+      <wsdl:input message="tns:ExcluirPrevisaoSaidaHttpPostIn" />
+      <wsdl:output message="tns:ExcluirPrevisaoSaidaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoEntrada">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método utilizado para excluir compra.</wsdl:documentation>
+      <wsdl:input message="tns:ExcluirPrevisaoEntradaHttpPostIn" />
+      <wsdl:output message="tns:ExcluirPrevisaoEntradaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CompletaServiceSoap" type="tns:CompletaServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Despacho">
+      <soap:operation soapAction="http://completalog.com/webservice/Despacho" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaDespacho">
+      <soap:operation soapAction="http://completalog.com/webservice/ConfirmaDespacho" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatus">
+      <soap:operation soapAction="http://completalog.com/webservice/PedidosStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecebimentoStatus">
+      <soap:operation soapAction="http://completalog.com/webservice/RecebimentoStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatusCondicao">
+      <soap:operation soapAction="http://completalog.com/webservice/PedidosStatusCondicao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EstoqueProdutoReserva">
+      <soap:operation soapAction="http://completalog.com/webservice/EstoqueProdutoReserva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaProduto">
+      <soap:operation soapAction="http://completalog.com/webservice/ConsultaProduto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRecebimento">
+      <soap:operation soapAction="http://completalog.com/webservice/ConsultaRecebimento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRangeCorreios">
+      <soap:operation soapAction="http://completalog.com/webservice/ConsultaRangeCorreios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusPedidos">
+      <soap:operation soapAction="http://completalog.com/webservice/LimpaConsumoStatusPedidos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusRecebimento">
+      <soap:operation soapAction="http://completalog.com/webservice/LimpaConsumoStatusRecebimento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraProduto">
+      <soap:operation soapAction="http://completalog.com/webservice/CadastraProduto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraClienteEmpresa">
+      <soap:operation soapAction="http://completalog.com/webservice/CadastraClienteEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraPrevisaoEntrada">
+      <soap:operation soapAction="http://completalog.com/webservice/CadastraPrevisaoEntrada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraPrevisaoEntradaItem">
+      <soap:operation soapAction="http://completalog.com/webservice/CadastraPrevisaoEntradaItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraPrevisaoSaida">
+      <soap:operation soapAction="http://completalog.com/webservice/CadastraPrevisaoSaida" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraNotaFiscalVenda">
+      <soap:operation soapAction="http://completalog.com/webservice/CadastraNotaFiscalVenda" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraPrevisaoSaidaItem">
+      <soap:operation soapAction="http://completalog.com/webservice/CadastraPrevisaoSaidaItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoSaida">
+      <soap:operation soapAction="http://completalog.com/webservice/ExcluirPrevisaoSaida" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoEntrada">
+      <soap:operation soapAction="http://completalog.com/webservice/ExcluirPrevisaoEntrada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CompletaServiceSoap12" type="tns:CompletaServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Despacho">
+      <soap12:operation soapAction="http://completalog.com/webservice/Despacho" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaDespacho">
+      <soap12:operation soapAction="http://completalog.com/webservice/ConfirmaDespacho" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatus">
+      <soap12:operation soapAction="http://completalog.com/webservice/PedidosStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecebimentoStatus">
+      <soap12:operation soapAction="http://completalog.com/webservice/RecebimentoStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatusCondicao">
+      <soap12:operation soapAction="http://completalog.com/webservice/PedidosStatusCondicao" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EstoqueProdutoReserva">
+      <soap12:operation soapAction="http://completalog.com/webservice/EstoqueProdutoReserva" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaProduto">
+      <soap12:operation soapAction="http://completalog.com/webservice/ConsultaProduto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRecebimento">
+      <soap12:operation soapAction="http://completalog.com/webservice/ConsultaRecebimento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRangeCorreios">
+      <soap12:operation soapAction="http://completalog.com/webservice/ConsultaRangeCorreios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusPedidos">
+      <soap12:operation soapAction="http://completalog.com/webservice/LimpaConsumoStatusPedidos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusRecebimento">
+      <soap12:operation soapAction="http://completalog.com/webservice/LimpaConsumoStatusRecebimento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraProduto">
+      <soap12:operation soapAction="http://completalog.com/webservice/CadastraProduto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraClienteEmpresa">
+      <soap12:operation soapAction="http://completalog.com/webservice/CadastraClienteEmpresa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraPrevisaoEntrada">
+      <soap12:operation soapAction="http://completalog.com/webservice/CadastraPrevisaoEntrada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraPrevisaoEntradaItem">
+      <soap12:operation soapAction="http://completalog.com/webservice/CadastraPrevisaoEntradaItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraPrevisaoSaida">
+      <soap12:operation soapAction="http://completalog.com/webservice/CadastraPrevisaoSaida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraNotaFiscalVenda">
+      <soap12:operation soapAction="http://completalog.com/webservice/CadastraNotaFiscalVenda" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraPrevisaoSaidaItem">
+      <soap12:operation soapAction="http://completalog.com/webservice/CadastraPrevisaoSaidaItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoSaida">
+      <soap12:operation soapAction="http://completalog.com/webservice/ExcluirPrevisaoSaida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoEntrada">
+      <soap12:operation soapAction="http://completalog.com/webservice/ExcluirPrevisaoEntrada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CompletaServiceHttpGet" type="tns:CompletaServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Despacho">
+      <http:operation location="/Despacho" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaDespacho">
+      <http:operation location="/ConfirmaDespacho" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatus">
+      <http:operation location="/PedidosStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecebimentoStatus">
+      <http:operation location="/RecebimentoStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatusCondicao">
+      <http:operation location="/PedidosStatusCondicao" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EstoqueProdutoReserva">
+      <http:operation location="/EstoqueProdutoReserva" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaProduto">
+      <http:operation location="/ConsultaProduto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRecebimento">
+      <http:operation location="/ConsultaRecebimento" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRangeCorreios">
+      <http:operation location="/ConsultaRangeCorreios" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusPedidos">
+      <http:operation location="/LimpaConsumoStatusPedidos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusRecebimento">
+      <http:operation location="/LimpaConsumoStatusRecebimento" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraNotaFiscalVenda">
+      <http:operation location="/CadastraNotaFiscalVenda" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoSaida">
+      <http:operation location="/ExcluirPrevisaoSaida" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoEntrada">
+      <http:operation location="/ExcluirPrevisaoEntrada" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CompletaServiceHttpPost" type="tns:CompletaServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Despacho">
+      <http:operation location="/Despacho" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaDespacho">
+      <http:operation location="/ConfirmaDespacho" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatus">
+      <http:operation location="/PedidosStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecebimentoStatus">
+      <http:operation location="/RecebimentoStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PedidosStatusCondicao">
+      <http:operation location="/PedidosStatusCondicao" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EstoqueProdutoReserva">
+      <http:operation location="/EstoqueProdutoReserva" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaProduto">
+      <http:operation location="/ConsultaProduto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRecebimento">
+      <http:operation location="/ConsultaRecebimento" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRangeCorreios">
+      <http:operation location="/ConsultaRangeCorreios" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusPedidos">
+      <http:operation location="/LimpaConsumoStatusPedidos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LimpaConsumoStatusRecebimento">
+      <http:operation location="/LimpaConsumoStatusRecebimento" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastraNotaFiscalVenda">
+      <http:operation location="/CadastraNotaFiscalVenda" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoSaida">
+      <http:operation location="/ExcluirPrevisaoSaida" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirPrevisaoEntrada">
+      <http:operation location="/ExcluirPrevisaoEntrada" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CompletaService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web service utilizado pelos clientes da Completa Logística</wsdl:documentation>
+    <wsdl:port name="CompletaServiceSoap" binding="tns:CompletaServiceSoap">
+      <soap:address location="http://201.23.101.93:8081/completaservice/CompletaService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CompletaServiceSoap12" binding="tns:CompletaServiceSoap12">
+      <soap12:address location="http://201.23.101.93:8081/completaservice/CompletaService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CompletaServiceHttpGet" binding="tns:CompletaServiceHttpGet">
+      <http:address location="http://201.23.101.93:8081/completaservice/CompletaService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CompletaServiceHttpPost" binding="tns:CompletaServiceHttpPost">
+      <http:address location="http://201.23.101.93:8081/completaservice/CompletaService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
