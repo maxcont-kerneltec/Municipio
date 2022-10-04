@@ -230,7 +230,7 @@ Public Class WS_Maxcont_Local
   End Function
 
   <WebMethod(Description:="Recepção do arquivo XML da nota fiscal eletrônica com a confirmação do Sefaz")> _
-  Public Function RecepcaoXmlNFe(ByVal id_empresa As Integer, ByVal id_nf As Integer, ByVal doc As XmlDocument, _
+  Public Function RecepcaoXmlNFe(ByVal id_empresa As Integer, ByVal id_nf As Integer, ByVal doc As XmlDocument,
                                  ByVal nome_arquivo As String) As Boolean
     Dim ajuste As New clsAjuste
     Dim caminho_salva As String = ajuste.GetFilePathFaturamentoSaveNFe(id_empresa)
@@ -253,6 +253,9 @@ Public Class WS_Maxcont_Local
     If xml.xMotivo <> "" And xml.xMotivo <> "Autorizado o uso da NF-e" Then
       ajuste.SalvaErroLog(id_empresa, id_nf, xml.xMotivo)
     End If
+
+    Dim gravaXML As New clsControleXML
+    gravaXML.SalvaXML(id_nf, 1, xml.InnerXML)
 
     Return True
   End Function
