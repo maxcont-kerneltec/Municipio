@@ -199,7 +199,7 @@ Public Class clsCriaXmlNFeVersao4
     PegaInfIntermed(writer) 'Y. dados do Intermediador
 
     InformacoesAdicionais(writer) 'Z. Informações Adicionais da NF-e
-    If id_empresa = 830 Or id_empresa = 328 Or id_empresa = 1734 Or id_empresa = 779 Then
+    If id_empresa = 830 Or id_empresa = 328 Or id_empresa = 1734 Or id_empresa = 779 Or id_empresa = 2154 Then
       ResponsavelTecnico(writer) 'Identificação do responsável técnico
     End If
 
