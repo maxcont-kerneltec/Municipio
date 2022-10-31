@@ -2,6 +2,7 @@
 Imports System.Xml
 Imports System.Data
 Imports System
+Imports System.Data.SqlClient
 
 Public Class clsCriaXmlNFeVersao4
   Private _xMotivo, _ambiente, _local_xml, _caminho_pasta As String
@@ -199,7 +200,7 @@ Public Class clsCriaXmlNFeVersao4
     PegaInfIntermed(writer) 'Y. dados do Intermediador
 
     InformacoesAdicionais(writer) 'Z. Informações Adicionais da NF-e
-    If id_empresa = 830 Or id_empresa = 328 Or id_empresa = 1734 Or id_empresa = 779 Then
+    If VerificaInfRespTec() = True Then
       ResponsavelTecnico(writer) 'Identificação do responsável técnico
     End If
 
@@ -4463,6 +4464,39 @@ Public Class clsCriaXmlNFeVersao4
     End Try
 
     Return caminho_pasta
+
+  End Function
+
+  Private Function VerificaInfRespTec() As Boolean
+    Dim conexao As New clsConexao
+    Dim funcao As New StringBuilder
+    Dim dr As SqlDataReader
+    Dim infRespTec As Boolean
+
+    funcao.Append("SELECT I.id_nf, U.UF, U.fTag_infRespTec ")
+    funcao.Append("FROM NFE_ide I ")
+    funcao.Append("INNER JOIN NFE_UF U ON U.cUF = I.cUF WHERE I.id_nf = " & Me.id_nf)
+
+    Try
+      dr = conexao.RetornaDataReader(funcao.ToString)
+      Do While dr.Read
+        infRespTec = dr(2)
+      Loop
+
+      If infRespTec = False Then
+        Return False
+      End If
+
+      If infRespTec = True Then
+        Return True
+      End If
+
+      dr.Close()
+      dr = Nothing
+
+    Catch ex As Exception
+      Me.xMotivo = "ERRO AO PEGAR OS DADOS DO RESPONSAVELTÉCNICO : " & ex.Message & " - " & ex.StackTrace
+    End Try
 
   End Function
 End Class

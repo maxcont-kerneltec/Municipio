@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\App_Code",
-    "\\WS_Maxcont"
+    "\\App_Code"
   ],
-  "SelectedNode": "\\WS_Maxcont\\WS_Maxcont_Local.asmx",
+  "SelectedNode": "\\WS_Maxcont",
   "PreviewInSolutionExplorer": false
 }
