@@ -2,6 +2,7 @@
 Imports System.Xml
 Imports System.Data
 Imports System
+Imports System.Data.SqlClient
 
 Public Class clsCriaXmlNFeVersao4
   Private _xMotivo, _ambiente, _local_xml, _caminho_pasta As String
@@ -4466,7 +4467,7 @@ Public Class clsCriaXmlNFeVersao4
 
   End Function
 
-  Private Function VerificaInfRespTec(ByVal id_nf As Integer) As Boolean
+  Private Function VerificaInfRespTec() As Boolean
     Dim conexao As New clsConexao
     Dim funcao As New StringBuilder
     Dim dr As SqlDataReader

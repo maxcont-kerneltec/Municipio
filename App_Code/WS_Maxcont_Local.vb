@@ -257,7 +257,7 @@ Public Class WS_Maxcont_Local
       Dim nfe As New clsNFEide
       nfe.PegaIdeNfe(id_empresa, id_nf)
 
-      envia_email(id_empresa, nfe.id_emit, nfe.id_dest, id_nf, nfe.sig_chNFe)
+      ' envia_email(id_empresa, nfe.id_emit, nfe.id_dest, id_nf, nfe.sig_chNFe)
     End If
 
     Dim gravaXML As New clsControleXML
